@@ -1,0 +1,57 @@
+   <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIIT</title>
+    <link rel="stylesheet" href="../css/NavBar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-vista="espacios">
+    <header class="barra-superior">
+        <div class="logo">
+            <span class="logo-simbolo">CIIT</span>
+            <span class="logo-texto">Area de informatica</span>
+        </div>
+        <nav class="menu-principal">
+            <a href="../views/home.html" data-link="home">Inicio</a>
+            <a href="../views/perfil.html" data-link="perfil">Perfil</a>
+            <a href="../views/inventario.html" data-link="inventario">Inventario</a>
+            <a href="../views/reservas.html" data-link="reservas">gestion de reservas</a>
+            <a href="../views/reportes.html" data-link="reportes">gestion de articulos</a>
+        </nav>
+
+        <div class="acciones-header">
+            <label class="interruptor-tema">
+                <input type="checkbox" id="interruptorTema">
+                <span class="slider"></span>
+            </label>
+            <span id="nombreUsuarioActivo" class="usuario-activo"></span>
+            <button id="btnCerrarSesion" class="btn-secundario">Cerrar sesión</button>
+        </div>
+    </header>
+
+
+    <script>
+    // Detecta el checkbox del modo oscuro
+    const interruptorTema = document.getElementById("interruptorTema");
+
+    // Carga el estado guardado (si existe)
+    if (localStorage.getItem("tema") === "oscuro") {
+        document.body.classList.add("tema-oscuro");
+        interruptorTema.checked = true;
+    }
+
+    // Escucha el cambio del interruptor
+    interruptorTema.addEventListener("change", () => {
+        if (interruptorTema.checked) {
+            document.body.classList.add("tema-oscuro");
+            localStorage.setItem("tema", "oscuro");
+        } else {
+            document.body.classList.remove("tema-oscuro");
+            localStorage.setItem("tema", "claro");
+        }
+    });
+</script>

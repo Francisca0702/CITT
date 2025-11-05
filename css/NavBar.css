@@ -1,0 +1,207 @@
+/*FUENTES*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* ====== VARIABLES DE COLOR ====== */
+:root {
+    --color-primario: #003f7d;
+    --color-secundario: #ffcc00;
+    --color-texto: #ffffff;
+    --color-fondo-oscuro: #0b1f3a;
+    --sombra-suave: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* ====== NAVBAR GENERAL ====== */
+.barra-superior {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: var(--color-primario);
+    color: var(--color-texto);
+    box-shadow: var(--sombra-suave);
+}
+
+/* ====== LOGO ====== */
+.logo {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-simbolo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.logo-texto {
+    font-weight: 300;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ====== MENÚ PRINCIPAL ====== */
+.menu-principal {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.menu-principal a {
+    color: var(--color-texto);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 0.2rem;
+    transition: color 0.3s ease;
+}
+
+.menu-principal a:hover,
+.menu-principal a.activo {
+    color: var(--color-secundario);
+}
+
+.menu-principal a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -0.2rem;
+    width: 0%;
+    height: 2px;
+    background-color: var(--color-secundario);
+    transition: width 0.3s ease;
+}
+
+.menu-principal a:hover::after,
+.menu-principal a.activo::after {
+    width: 100%;
+}
+
+/* ====== ACCIONES HEADER ====== */
+.acciones-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Usuario activo */
+.usuario-activo {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Botón cerrar sesión */
+.btn-secundario {
+    background-color: transparent;
+    color: var(--color-texto);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-secundario:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* ====== INTERRUPTOR DE TEMA ====== */
+.interruptor-tema {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 28px;
+}
+
+.interruptor-tema input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: 0.3s;
+    border-radius: 28px;
+}
+
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #fff;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--color-secundario);
+}
+
+input:checked + .slider::before {
+    transform: translateX(24px);
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 960px) {
+    .barra-superior {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .menu-principal {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+    }
+
+    .acciones-header {
+        align-self: stretch;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+
+/* ====== MODO OSCURO ====== */
+body.tema-oscuro {
+    background-color: #111827; /* Fondo general oscuro */
+    color: #f9fafb; /* Texto claro */
+}
+
+/* Barra superior en modo oscuro */
+body.tema-oscuro .barra-superior {
+    background-color: #0b1f3a; /* Azul más oscuro */
+}
+
+/* Enlaces y texto del menú en modo oscuro */
+body.tema-oscuro .menu-principal a,
+body.tema-oscuro .usuario-activo {
+    color: var(--color-secundario);
+}
+
+/* Botón cerrar sesión en modo oscuro */
+body.tema-oscuro .btn-secundario {
+    border-color: rgba(255, 255, 255, 0.5);
+    color: var(--color-secundario);
+}
+
