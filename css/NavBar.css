@@ -212,3 +212,22 @@ body.tema-oscuro .barra-superior { background-color: #0b1f3a; }
 body.tema-oscuro .bienvenida,
 body.tema-oscuro .info-box,
 body.tema-oscuro .card-opcion { background: #1f2937; }
+
+/* --- Navbar solo para vistas admin --- */
+body[data-rol="admin"] .barra-superior {
+  background-color: #0b1f3a;          /* más oscuro, dentro de la paleta */
+  color: var(--color-fondo);
+}
+body[data-rol="admin"] .menu-principal a { color: var(--color-fondo); }
+body[data-rol="admin"] .menu-principal a:hover,
+body[data-rol="admin"] .menu-principal a.activo {
+  color: var(--color-acento);
+}
+body[data-rol="admin"] .menu-principal a::after {
+  background-color: var(--color-acento);
+}
+
+/* Ajustes de contraste en modo oscuro para admin */
+body[data-rol="admin"].tema-oscuro .barra-superior {
+  background-color: #08152b;
+}
