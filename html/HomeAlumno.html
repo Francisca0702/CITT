@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIIT - Panel Alumno</title>
+
+    <link rel="stylesheet" href="../css/NavBar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body data-vista="dashboard">
+
+    <!-- NAVBAR -->
+    <header class="barra-superior">
+        <div class="logo">
+            <span class="logo-simbolo">CIIT</span>
+            <span class="logo-texto">Área de Informática</span>
+        </div>
+
+        <nav class="menu-principal">
+            <a href="dashboardAlumno.html" class="activo">Inicio</a>
+            <a href="perfil.html">Perfil</a>
+            <a href="reservaEspacios.html">Reserva espacios</a>
+            <a href="reservaArticulos.html">Reserva artículos</a>
+            <a href="calendario.html">Articulos</a>
+        </nav>
+
+        <div class="acciones-header">
+            <label class="interruptor-tema">
+                <input type="checkbox" id="interruptorTema">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+
+
+
+
+    <!-- CONTENIDO -->
+    <main class="dashboard">
+
+        <h1 class="titulo-dashboard">¡Hola, Alumno!</h1>
+
+        <p class="subtexto-dashboard">Selecciona una opción</p>
+
+        <section class="grid-opciones">
+
+            <a href="reservaEspacios.html" class="card-opcion">
+                <h3>Reservar Espacios</h3>
+                <p>  Salas · Cubículos</p>
+            </a>
+
+            <a href="reservaArticulos.html" class="card-opcion">
+                <h3>Reservar Artículos</h3>
+                <p>Equipos · Herramientas · Materiales</p>
+            </a>
+
+            <a href="calendario.html" class="card-opcion">
+                <h3>Calendario</h3>
+                <p>Horarios y disponibilidad</p>
+            </a>
+
+            <a href="misPrestamos.html" class="card-opcion">
+                <h3>Mis Préstamos</h3>
+                <p>Estado · Historial · Devoluciones</p>
+            </a>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- SCRIPT MODO OSCURO -->
+    <script>
+        const interruptorTema = document.getElementById("interruptorTema");
+
+        if (localStorage.getItem("tema") === "oscuro") {
+            document.body.classList.add("tema-oscuro");
+            interruptorTema.checked = true;
+        }
+
+        interruptorTema.addEventListener("change", () => {
+            if (interruptorTema.checked) {
+                document.body.classList.add("tema-oscuro");
+                localStorage.setItem("tema", "oscuro");
+            } else {
+                document.body.classList.remove("tema-oscuro");
+                localStorage.setItem("tema", "claro");
+            }
+        });
+    </script>
+
+</body>
+</html>
