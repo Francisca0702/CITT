@@ -89,6 +89,17 @@ body {
 input:checked + .slider { background-color: var(--color-acento); }
 input:checked + .slider::before { transform: translateX(24px); }
 
+
+
+
+
+
+
+
+
+
+
+
 /* ========================
    LOGIN
 ======================== */
@@ -159,6 +170,16 @@ input:checked + .slider::before { transform: translateX(24px); }
     border-top: 5px solid var(--color-primario);
 }
 
+
+
+
+
+
+
+
+
+
+
 /* ========================
    PERFIL ALUMNO (NUEVO LAYOUT)
 ======================== */
@@ -212,3 +233,423 @@ body.tema-oscuro .barra-superior { background-color: #0b1f3a; }
 body.tema-oscuro .bienvenida,
 body.tema-oscuro .info-box,
 body.tema-oscuro .card-opcion { background: #1f2937; }
+
+
+
+
+
+
+
+
+
+
+/*Reserva de espacios Alumno*/
+
+/* ===== RESERVA DE ESPACIOS ===== */
+body {
+    background: linear-gradient(to top, rgba(48,127,226,0.28) 12%, #FFFFFF 88%);
+    background-attachment: fixed;
+}
+
+.reserva-contenedor {
+    max-width: 1000px;
+    margin: 4rem auto;
+    text-align: center;
+}
+
+.titulo-pagina {
+    font-weight: 700;
+    color: var(--color-primario);
+}
+
+.selector-filtros {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.selector-filtros select,
+.selector-filtros input {
+    padding: 0.7rem;
+    border-radius: 10px;
+    border: 1px solid #cfd3da;
+    font-size: 1rem;
+}
+
+/* PANEL */
+.disponibilidad-dia {
+    background: var(--color-fondo);
+    margin-top: 3rem;
+    padding: 2rem;
+    border-radius: 18px;
+    box-shadow: var(--sombra-suave);
+}
+
+/* HORAS DEL DÍA */
+.tabla-dia {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.bloque-hora {
+    padding: 1rem;
+    border-radius: 12px;
+    background: #f7f9ff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: .3s;
+    border: 1px solid transparent;
+}
+
+.bloque-hora:hover {
+    border-color: var(--color-primario);
+}
+
+.bloque-hora.libre { color: #1d9c52; font-weight: 600; }
+.bloque-hora.ocupado { color: #b91d1d; background: #ffd9d9; font-weight: 600; }
+
+/* MODO OSCURO */
+body.tema-oscuro .disponibilidad-dia { background: #1f2937; }
+body.tema-oscuro .bloque-hora { background: #2c3647; color: #eee; }
+
+
+
+
+/* ========================
+   MODAL
+======================== */
+.modal-oculto { display: none; }
+
+#modalReserva {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    overflow-y: auto;
+}
+#modalReserva::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(4px);
+}
+
+/* Modal cuadro centrado */
+.modal-contenido {
+    position: relative;
+    margin: 4rem auto;
+    width: min(92vw, 650px);
+
+    /* Azul claro suave */
+    background: #9CC6F0;
+    border-radius: 22px;
+    padding: 2.5rem;
+    box-shadow: 0 18px 45px rgba(0,0,0,0.28);
+
+    animation: modalEntrada .25s ease-out;
+}
+
+@keyframes modalEntrada {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Texto siempre legible */
+.modal-contenido,
+.modal-contenido label,
+.modal-contenido h2,
+.modal-contenido span {
+    color: #ffffff;
+}
+
+/* Inputs */
+.modal-form input,
+.modal-form textarea {
+    width: 100%;
+    padding: .75rem .9rem;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #cfd3da;
+    color: #1A1A1A;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+}
+
+.modal-form textarea { min-height: 90px; resize: vertical; }
+
+/* Checkbox */
+.check-linea {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    font-size: 1.05rem;
+}
+.check-linea input { width: 20px; height: 20px; accent-color: var(--color-acento); }
+
+.oculto { display: none; }
+
+/* Botones dentro del modal */
+.acciones-modal {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-secundario {
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: .7rem 1.4rem;
+    border-radius: 12px;
+    transition: .3s;
+}
+.btn-secundario:hover { background-color: #ffffff; color: var(--color-primario); }
+
+/* Sección selección artículos */
+.fila-articulos {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.campo-articulo { flex: 1; display: flex; flex-direction: column; }
+
+.campo-articulo label { font-weight: 600; margin-bottom: .3rem; }
+
+#sectionArticulos select,
+#sectionArticulos input {
+  padding: .6rem .9rem;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+}
+
+/* Lista visual de artículos agregados */
+#listaSeleccionArticulos li {
+  background: rgba(255,255,255,0.95);
+  padding: .6rem .9rem;
+  border-radius: 10px;
+  margin-top: .4rem;
+  color: #1A1A1A;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#listaSeleccionArticulos li button {
+  background: none;
+  border: none;
+  color: #D22E2E;
+  cursor: pointer;
+  font-size: .95rem;
+  font-weight: 700;
+}
+
+/* ========================
+   POPUP DE ÉXITO
+======================== */
+#popupExito {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+
+.popup-oculto { display: none !important; }
+
+.popup-contenido {
+  background: #ffffff;
+  padding: 2rem 2.4rem;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 12px 45px rgba(0,0,0,0.25);
+  width: min(85vw, 380px);
+  animation: fadeIn .25s ease-out;
+}
+
+.popup-contenido h3 { font-weight: 700; color: var(--color-primario); }
+.popup-contenido p { color: #333; margin: .8rem 0 1.3rem; }
+
+@keyframes fadeIn {
+  from { transform: translateY(-12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ========================
+   MODAL
+======================== */
+.modal-oculto { display: none; }
+
+#modalReserva {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    overflow-y: auto;
+}
+#modalReserva::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(4px);
+}
+
+/* Modal cuadro centrado */
+.modal-contenido {
+    position: relative;
+    margin: 4rem auto;
+    width: min(92vw, 650px);
+
+    /* Azul claro suave */
+    background: #9CC6F0;
+    border-radius: 22px;
+    padding: 2.5rem;
+    box-shadow: 0 18px 45px rgba(0,0,0,0.28);
+
+    animation: modalEntrada .25s ease-out;
+}
+
+@keyframes modalEntrada {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Texto siempre legible */
+.modal-contenido,
+.modal-contenido label,
+.modal-contenido h2,
+.modal-contenido span {
+    color: #ffffff;
+}
+
+/* Inputs */
+.modal-form input,
+.modal-form textarea {
+    width: 100%;
+    padding: .75rem .9rem;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #cfd3da;
+    color: #1A1A1A;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+}
+
+.modal-form textarea { min-height: 90px; resize: vertical; }
+
+/* Checkbox */
+.check-linea {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    font-size: 1.05rem;
+}
+.check-linea input { width: 20px; height: 20px; accent-color: var(--color-acento); }
+
+.oculto { display: none; }
+
+/* Botones dentro del modal */
+.acciones-modal {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-secundario {
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: .7rem 1.4rem;
+    border-radius: 12px;
+    transition: .3s;
+}
+.btn-secundario:hover { background-color: #ffffff; color: var(--color-primario); }
+
+/* Sección selección artículos */
+.fila-articulos {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.campo-articulo { flex: 1; display: flex; flex-direction: column; }
+
+.campo-articulo label { font-weight: 600; margin-bottom: .3rem; }
+
+#sectionArticulos select,
+#sectionArticulos input {
+  padding: .6rem .9rem;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+}
+
+/* Lista visual de artículos agregados */
+#listaSeleccionArticulos li {
+  background: rgba(255,255,255,0.95);
+  padding: .6rem .9rem;
+  border-radius: 10px;
+  margin-top: .4rem;
+  color: #1A1A1A;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#listaSeleccionArticulos li button {
+  background: none;
+  border: none;
+  color: #D22E2E;
+  cursor: pointer;
+  font-size: .95rem;
+  font-weight: 700;
+}
+
+/* ========================
+   POPUP DE ÉXITO
+======================== */
+#popupExito {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+
+.popup-oculto { display: none !important; }
+
+.popup-contenido {
+  background: #ffffff;
+  padding: 2rem 2.4rem;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 12px 45px rgba(0,0,0,0.25);
+  width: min(85vw, 380px);
+  animation: fadeIn .25s ease-out;
+}
+
+.popup-contenido h3 { font-weight: 700; color: var(--color-primario); }
+.popup-contenido p { color: #333; margin: .8rem 0 1.3rem; }
+
+@keyframes fadeIn {
+  from { transform: translateY(-12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
+/* Modo oscuro */
+body.tema-oscuro .modal-contenido { background: #1f2937 !important; }
+body.tema-oscuro .modal-form input,
+body.tema-oscuro .modal-form textarea { background: #2b3445; color: #fff; }
+
+
+

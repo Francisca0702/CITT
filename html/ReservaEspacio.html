@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar Espacios CIIT</title>
+
+    <link rel="stylesheet" href="../css/NavBar.css">
+    <link rel="stylesheet" href="../css/ReservaEspacio.css">
+</head>
+
+<!-- POPUP DE ÉXITO -->
+<div id="popupExito" class="popup-oculto">
+  <div class="popup-contenido">
+    <h3>Reserva enviada</h3>
+    <p>Tu solicitud ha sido registrada.</p>
+    <button id="cerrarPopup" class="btn-primario">Ok</button>
+  </div>
+</div>
+
+
+<body>
+
+<header class="barra-superior">
+    <div class="logo">
+        <span class="logo-simbolo">CIIT</span>
+        <span class="logo-texto">Área de Informática</span>
+    </div>
+
+    <nav class="menu-principal">
+        <a href="InicioAlumno.html">Inicio</a>
+        <a href="PerfilAlumno.html">Perfil</a>
+        <a class="activo" href="ReservaEspacio.html">Reserva espacios</a>
+        <a href="ReservaArticulos.html">Reserva artículos</a>
+        <a href="Calendario.html">Calendario</a>
+    </nav>
+
+    <div class="acciones-header">
+        <label class="interruptor-tema">
+            <input type="checkbox" id="interruptorTema">
+            <span class="slider"></span>
+        </label>
+    </div>
+</header>
+
+<div class="reserva-contenedor">
+    <h1 class="titulo-pagina">Reservar Espacio</h1>
+
+    <div class="selector-filtros">
+        <select id="tipoEspacio">
+            <option>Laboratorio Colaborativo</option>
+            <option>Laboratorio Redes</option>
+            <option>Laboratorio Computación</option>
+            <option>Sala de Reuniones</option>
+            <option>Cubículo Individual</option>
+        </select>
+
+        <input type="date" id="fechaSeleccionada">
+    </div>
+
+    <section class="disponibilidad-dia">
+        <h2 id="tituloDia">Disponibilidad del Día</h2>
+        <p>Seleccione una hora para reservar.</p>
+
+        <div id="tablaDia" class="tabla-dia"></div>
+    </section>
+</div>
+
+<!-- ================= MODAL ================= -->
+<div id="modalReserva" class="modal-oculto">
+  <div class="modal-contenido">
+    <h2>Solicitud de Reserva</h2>
+
+    <form id="formReserva" class="modal-form">
+
+      <label for="nombreSolicitante">Nombre del solicitante</label>
+      <input type="text" id="nombreSolicitante" placeholder="Tu nombre" required>
+
+      <label for="rutSolicitante">RUT del solicitante</label>
+      <input type="text" id="rutSolicitante" placeholder="12345678-9" required>
+
+      <label for="descripcionUso">Descripción del uso</label>
+      <textarea id="descripcionUso" placeholder="Ej: Taller, reunión, práctica, etc." required></textarea>
+
+      <hr class="separador">
+
+      <label class="check-linea">
+        <input type="checkbox" id="reservarTodo">
+        Reservar todo el CITT
+      </label>
+
+      <div id="sectionTodoCITT" class="oculto">
+        <div class="grid-2">
+          <div>
+            <label for="horaInicio">Hora de inicio</label>
+            <input type="time" id="horaInicio">
+          </div>
+          <div>
+            <label for="horaTermino">Hora de término</label>
+            <input type="time" id="horaTermino">
+          </div>
+        </div>
+
+        <label for="cantidadPersonas">Cantidad de personas</label>
+        <input type="number" id="cantidadPersonas" min="1">
+
+        <label for="detallesCITT">Detalles adicionales</label>
+        <textarea id="detallesCITT" placeholder="Indica necesidades especiales, etc."></textarea>
+      </div>
+
+      <hr class="separador">
+
+      <label class="check-linea">
+        <input type="checkbox" id="necesitaArticulos">
+        ¿Necesita artículos del CITT?
+      </label>
+
+  <div id="sectionArticulos" class="oculto">
+
+    <div class="fila-articulos">
+      <div class="campo-articulo">
+        <label for="selectArticulo">Seleccionar artículo</label>
+        <select id="selectArticulo">
+          <option disabled selected>Seleccione un artículo</option>
+          <option value="Cámara">Cámara</option>
+          <option value="Micrófono">Micrófono</option>
+          <option value="Trípode">Trípode</option>
+          <option value="Parlante">Parlante</option>
+          <option value="Notebook">Notebook</option>
+          <option value="Proyector">Proyector</option>
+        </select>
+      </div>
+
+      <div class="campo-articulo">
+        <label for="cantidadArticulo">Cantidad</label>
+        <input type="number" id="cantidadArticulo" min="1" value="1">
+      </div>
+    </div>
+
+    <button type="button" id="agregarArticulo" class="btn-primario btn-agregar">Agregar artículo</button>
+
+    <hr class="separador">
+
+    <h4 class="titulo-lista">Artículos solicitados:</h4>
+    <ul id="listaSeleccionArticulos"></ul>
+
+  </div>
+
+
+      <div class="acciones-modal">
+        <button type="submit" class="btn-primario">Solicitar reserva</button>
+        <button type="button" id="cerrarModal" class="btn-secundario">Cancelar</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<script src="../js/ReservaEspacio.js"></script>
+</body>
+</html>
