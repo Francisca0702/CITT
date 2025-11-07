@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CITT - Editar Información Docente</title>
+  <link rel="stylesheet" href="../css/NavBar.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body data-vista="editar-docente">
+
+  <!-- NAVBAR externo -->
+  <iframe 
+    src="./NavBarDocente.html" 
+    style="width:100%; height:100px; border:none;" 
+    title="Navbar Docente">
+  </iframe>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="reserva-contenedor">
+    <h2 class="titulo-pagina"> Editar Información Personal - Docente</h2>
+    <p>Modifica tu información personal o la configuración de tus notificaciones.</p>
+
+    <form class="modal-form" id="formEditarDocente" onsubmit="mostrarMensaje(event)">
+      <!-- Editar datos personales -->
+      <label for="nombre"> Nombre completo:</label>
+      <input type="text" id="nombre" placeholder="Ej: María González" required>
+
+      <label for="telefono"> Teléfono:</label>
+      <input type="text" id="telefono" placeholder="+56 9 0000 0000" required>
+
+      <label for="correo"> Correo institucional:</label>
+      <input type="email" id="correo" placeholder="nombre.apellido@profesorduocuc.cl" required>
+
+      <!-- Ver rol asignado -->
+      <label for="rol"> Rol asignado:</label>
+      <input type="text" id="rol" value="Docente" readonly>
+
+      <!-- Configurar notificaciones -->
+      <div class="check-linea">
+        <input type="checkbox" id="notificaciones" checked>
+        <label for="notificaciones">Recibir recordatorios de reservas o préstamos</label>
+      </div>
+
+      <!-- Cambiar contraseña -->
+      <h3 style="color: var(--color-primario); margin-top: 2rem;"> Actualizar Contraseña</h3>
+
+      <label for="passwordActual">Contraseña actual:</label>
+      <input type="password" id="passwordActual" placeholder="Ingrese su contraseña actual" required>
+
+      <label for="passwordNueva">Nueva contraseña:</label>
+      <input type="password" id="passwordNueva" placeholder="********" required>
+
+      <label for="passwordConfirmar">Confirmar nueva contraseña:</label>
+      <input type="password" id="passwordConfirmar" placeholder="********" required>
+
+      <!-- Botones -->
+      <div class="acciones-modal">
+        <button type="submit" class="btn-primario"> Guardar configuración</button>
+        <a href="./PerfilDocente.html" class="btn-secundario">Cancelar</a>
+      </div>
+    </form>
+
+    <!-- Mensaje de éxito -->
+    <div id="popupExito" class="popup-oculto">
+      <div class="popup-contenido">
+        <h3>Configuración guardada</h3>
+        <p>El sistema ha actualizado su información correctamente.</p>
+        <a href="./PerfilDocente.html" class="btn-primario">Volver al perfil</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Validar y mostrar mensaje de éxito
+    function mostrarMensaje(e) {
+      e.preventDefault();
+      const actual = document.getElementById("passwordActual").value;
+      const nueva = document.getElementById("passwordNueva").value;
+      const confirmar = document.getElementById("passwordConfirmar").value;
+
+      if (actual.trim() === "") {
+        alert("Debe ingresar su contraseña actual.");
+        return;
+      }
+
+      if (nueva !== confirmar) {
+        alert("La nueva contraseña y su confirmación no coinciden.");
+        return;
+      }
+
+      document.getElementById("popupExito").classList.remove("popup-oculto");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Activar modo oscuro si estaba guardado
+    const interruptorTema = document.getElementById("interruptorTema");
+    if (localStorage.getItem("tema") === "oscuro") {
+      document.body.classList.add("tema-oscuro");
+    }
+  </script>
+</body>
+</html>

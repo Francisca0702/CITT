@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CITT - Panel Coordinador</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../css/NavBar.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body data-vista="home-coordinador">
+
+  <!-- NAVBAR externo -->
+  <iframe 
+    src="./NavBarCoordinador.html" 
+    style="width:100%; height:100px; border:none;" 
+    title="Navbar Coordinador">
+  </iframe>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="dashboard">
+    <h1 class="titulo-dashboard">¡Hola, Coordinador!</h1>
+    <p class="subtexto-dashboard">Selecciona una opción</p>
+
+    <section class="grid-opciones">
+      <a href="GestionReservasCoordinador.html" class="card-opcion">
+        <h3>Gestión de Reservas</h3>
+        <p>Aprueba o rechaza solicitudes de espacios y artículos.</p>
+      </a>
+
+      <a href="CalendarioCoordinador.html" class="card-opcion">
+        <h3>Calendario General</h3>
+        <p>Visualiza todas las reservas del CITT.</p>
+      </a>
+
+      <a href="InventarioCoordinador.html" class="card-opcion">
+        <h3>Inventario</h3>
+        <p>Administra el stock de equipos y materiales.</p>
+      </a>
+
+      <a href="ReportesCoordinador.html" class="card-opcion">
+        <h3>Reportes</h3>
+        <p>Genera reportes de uso, historial y rendimiento del CITT.</p>
+      </a>
+
+      <a href="PerfilCoordinador.html" class="card-opcion">
+        <h3>Perfil</h3>
+        <p>Actualiza tus datos y gestiona tu cuenta.</p>
+      </a>
+    </section>
+  </main>
+
+  <!-- SCRIPT MODO OSCURO -->
+  <script>
+    const interruptorTema = document.getElementById("interruptorTema");
+    if (localStorage.getItem("tema") === "oscuro") {
+      document.body.classList.add("tema-oscuro");
+    }
+  </script>
+</body>
+</html>
