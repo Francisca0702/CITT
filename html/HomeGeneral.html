@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CITT - Inicio</title>
+
+  <link rel="stylesheet" href="../css/NavBar.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body data-vista="home">
+
+  <!-- NAVBAR -->
+  <header class="barra-superior">
+    <div class="logo">
+      <span class="logo-simbolo">CITT</span>
+      <span class="logo-texto">Centro de Innovación y Transferencia Tecnológica</span>
+    </div>
+
+    <nav class="menu-principal">
+      <a href="Home.html" class="activo">Inicio</a>
+      <a href="RegistroUsuario.html">Registro</a>
+      <a href="index.html">Iniciar Sesión</a>
+    </nav>
+
+    <div class="acciones-header">
+      <label class="interruptor-tema">
+        <input type="checkbox" id="interruptorTema">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="perfil-layout">
+
+    <section class="perfil-header">
+      <img src="https://cdn-icons-png.flaticon.com/512/906/906175.png" alt="CITT Logo" class="perfil-foto">
+      <h2 class="perfil-nombre">Centro de Innovación y Transferencia Tecnológica (CITT)</h2>
+      <p class="perfil-subtitulo">Área de Informática y Telecomunicaciones - Duoc UC Valparaíso</p>
+    </section>
+
+    <!-- INFORMACIÓN DEL CITT -->
+    <section class="perfil-cards">
+
+      <div class="info-box">
+        <h3> Objetivos</h3>
+        <p>El CITT busca fomentar la innovación, el trabajo colaborativo y la experimentación tecnológica entre estudiantes, docentes y la comunidad educativa.</p>
+        <ul>
+          <li> Promover la creatividad aplicada a proyectos reales.</li>
+          <li> Facilitar el aprendizaje colaborativo y el desarrollo de competencias digitales.</li>
+          <li> Apoyar la transferencia tecnológica entre estudiantes y la industria.</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h3> Normas Generales</h3>
+        <ul>
+          <li> Respetar los horarios de reserva y uso de espacios.</li>
+          <li> Mantener un ambiente de trabajo silencioso y ordenado.</li>
+          <li> Utilizar los equipos y materiales de forma responsable.</li>
+          <li> No comer ni beber dentro del laboratorio.</li>
+          <li> Todo material solicitado debe ser devuelto en buen estado.</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h3> Horarios de Atención</h3>
+        <p><strong>Lunes a Viernes:</strong> 09:00 - 13:00 / 14:00 - 18:00 hrs</p>
+        <p><strong>Sábado:</strong> 09:00 - 13:00 hrs</p>
+        <p><strong>Domingo y festivos:</strong> Cerrado</p>
+      </div>
+
+      <div class="info-box">
+        <h3> Contacto</h3>
+        <p><strong>Correo:</strong> citt.informatica@duocuc.cl</p>
+        <p><strong>Teléfono:</strong> +56 32 250 4300</p>
+        <p><strong>Ubicación:</strong> Duoc UC Sede Valparaíso, Av. Brasil 2021, Edificio B - Piso 3</p>
+      </div>
+    </section>
+
+    <!-- PIE -->
+    <footer style="margin-top:3rem; text-align:center; color:#666; font-size:0.9rem;">
+      <p>© 2025 CITT - Área de Informática y Telecomunicaciones | Duoc UC</p>
+    </footer>
+  </main>
+
+  <!-- SCRIPT MODO OSCURO -->
+  <script>
+    const interruptorTema = document.getElementById("interruptorTema");
+
+    if (localStorage.getItem("tema") === "oscuro") {
+      document.body.classList.add("tema-oscuro");
+      interruptorTema.checked = true;
+    }
+
+    interruptorTema.addEventListener("change", () => {
+      if (interruptorTema.checked) {
+        document.body.classList.add("tema-oscuro");
+        localStorage.setItem("tema", "oscuro");
+      } else {
+        document.body.classList.remove("tema-oscuro");
+        localStorage.setItem("tema", "claro");
+      }
+    });
+  </script>
+</body>
+</html>
