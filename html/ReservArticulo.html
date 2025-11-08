@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIIT | Registro y Edición de Artículos</title>
+
+  <link rel="stylesheet" href="../css/NavBar.css">
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <h1>CIIT</h1>
+      <span>Área de informatica </span>
+    </div>
+
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Perfil</a>
+      <a href="#">Reserva espacios</a>
+      <a href="#">Reserva equipos</a>
+      <a href="#">Calendario</a>
+      <div class="modo"></div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="tarjeta">
+      <h2>Registro y Edición de Artículos</h2>
+      <p class="descripcion">Administracion de los artículos disponibles para préstamo en el CIIT</p>
+      
+      <form id="formArticulo">
+        <div>
+          <label for="nombre">Nombre del artículo</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Ej. Notebook Acer A2" required>
+        </div>
+        
+        <div>
+          <label for="categoria">Categoría</label>
+          <select id="categoria" name="categoria" required>
+            <option value="">Seleccionar...</option>
+            <option value="Herramienta">Herramienta</option>
+            <option value="Equipo">Equipo</option>
+            <option value="Material">Material</option>
+          </select>
+        </div>
+        
+        <div>
+          <label for="estado">Estado</label>
+          <select id="estado" name="estado" required>
+            <option value="disponible">Disponible</option>
+            <option value="no disponible">No disponible</option>
+          </select>
+        </div>
+        
+        <div>
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" name="descripcion" rows="3" placeholder="Breve descripción del artículo"></textarea>
+        </div>
+
+        <div class="botones">
+          <button type="reset" class="btn-gris">Limpiar</button>
+          <button type="submit" class="btn-azul">Registrar Pedido</button>
+          
+        </div>
+      </form>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Estado</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Notebook Acer aspire lite 14</td>
+            <td>Equipo</td>
+            <td class="estado-disponible">Disponible</td>
+            <td>Microscopio óptico para prácticas de biología.</td>
+          </tr>
+          <tr>
+            <td>Impresora 3-D</td>
+            <td>Herramienta</td>
+            <td class="estado-no-disponible">No disponible</td>
+            <td>Impresora 3d K9 Fdm</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>
