@@ -7,8 +7,8 @@
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    background: linear-gradient(to top, rgba(48,127,226,0.28) 10%, #FFFFFF 80%);
-    background-attachment: fixed;
+    background: linear-gradient(180deg, #ffffff 0%, #eaf3ff 50%, #d0e5ff 100%);
+    background-size: cover;
 }
 
 /* ========================
@@ -911,3 +911,363 @@ body.tema-oscuro .modal-form textarea { background: #2b3445; color: #fff; }
       display: none;
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*Gestion de articulos*/
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    background: linear-gradient(160deg, #e8f1ff, #ffffff);
+}
+
+/* CONTENEDOR PRINCIPAL */
+.contenedor-gestion {
+    width: 90%;
+    max-width: 1100px;
+    margin: 120px auto 40px auto;
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+/* TÍTULO */
+.contenedor-gestion h2 {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #1b3e78;
+}
+
+/* TABLA */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th {
+    background: #307FE2;
+    color: white;
+    padding: 14px;
+    font-weight: 500;
+}
+
+td {
+    text-align: center;
+    padding: 12px;
+    border-bottom: 1px solid #e9e9e9;
+    font-size: 15px;
+}
+
+
+/* ESTADOS */
+.estado {
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.disponible { background: #d9ffd9; color: #155d1b; }
+.prestado   { background: #fff4b0; color: #6b5800; }
+.daño       { background: #ffd4d4; color: #7a0000; }
+
+/* BOTONES DE TABLA */
+.btn {
+    padding: 7px 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+    font-size: 14px;
+}
+
+.btn-prestar {
+    background: #307FE2;
+    color: white;
+}
+
+.btn-prestar:hover { background: #1b57a9; }
+
+.btn-devolver {
+    background: #ffa534;
+    color: #3d2a00;
+}
+
+.btn-devolver:hover { background: #e28f1c; }
+
+/* MODALES */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-contenido {
+    background: #1b57a9;
+    padding: 25px;
+    border-radius: 14px;
+    width: 350px;
+    animation: fadeIn .25s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { transform: scale(.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* CAMPOS EN MODAL */
+.modal-contenido label {
+    font-weight: 600;
+    margin-top: 10px;
+    display: block;
+}
+
+.modal-contenido input,
+.modal-contenido select,
+.modal-contenido textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ced9ff;
+    background: #f6f8ff;
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px;
+    width: 48%;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+#confirmarPrestamo, #confirmarDevolucion {
+    background: #307FE2;
+    color: white;
+}
+
+#confirmarPrestamo:hover, #confirmarDevolucion:hover {
+    background: #214e99;
+}
+
+.modal-contenido button:last-child {
+    background: #ccc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*INVENTARIO ARTICULO*/
+
+body{
+    font-family:"Poppins";
+    margin:0;
+    background:linear-gradient(160deg, #d9eaff, #ffffff);
+    padding-bottom:50px;
+}
+
+header{
+    background:#307FE2;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+.form-container, .tabla-container{
+    width:80%;
+    margin:30px auto;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+  
+}
+
+
+/* CONTENEDOR PRINCIPAL CENTRADO */
+.contenedor-inventario {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+/* TARJETAS (FORM Y TABLA) */
+.card-form,
+.card-tabla {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 15px;
+   
+}
+
+/* TÍTULOS */
+.card-form h2,
+.card-tabla h3 {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 22px;
+    row-gap: 30px;   /* ← Separa las filas */
+}
+
+/* Para inputs largos */
+.full {
+    grid-column: span 2;
+}
+
+
+/* CAMPOS */
+label {
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+input, select {
+    padding: 14px; /* más cómodo */
+    border-radius: 10px;
+    border: 1px solid #d0d8f5;
+    background: #f7f9ff;
+    width: 100%;
+    box-sizing: border-box; /* ← evita que se desborden */
+}
+
+/* BOTÓN PRINCIPAL */
+.btn-guardar {
+    padding: 12px;
+    background: #307FE2;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: .3s;
+}
+
+.btn-guardar:hover {
+    background: #215bb7;
+}
+
+/* TABLA */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background: #f5f8ff;
+}
+
+/* ESTADOS VISUALES */
+.estado {
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.disponible { background: #d6ffdb; color: #155d1b; }
+.prestado { background: #fff2a4; color: #6b5800; }
+.dañado { background: #ffd4d4; color: #8b0000; }
+
+
+.detalle-articulo {
+    margin-top: 25px;
+}
+
+.detalle-box {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e3e7ff;
+    box-shadow: 0px 4px 14px rgba(0,0,0,0.05);
+}
+
+.detalle-box h4 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #215bb7;
+}
+
+/* TOAST / MENSAJE FLOTANTE */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #307FE2;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-size: 15px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all .4s ease;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+

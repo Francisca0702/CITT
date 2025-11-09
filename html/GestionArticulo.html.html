@@ -1,0 +1,83 @@
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>CIIT</title>
+            <link rel="stylesheet" href="../css/NavBar.css">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+        </head>
+
+        <body>
+                <iframe 
+                    src="./NavBarCoordinador.html"
+                    style="width:100%; height:100px; border:none;"
+                    title="Navbar Coordinador">
+                </iframe>
+<section class="contenedor-gestion">
+
+    <h2>Gestión de Artículos</h2>
+
+    <!-- TABLA -->
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Artículo</th>
+                <th>Categoría</th>
+                <th>Estado</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody id="tablaGestion"></tbody>
+    </table>
+
+</section>
+
+<!-- MODAL PRESTAMO -->
+<div class="modal" id="modalPrestamo">
+  <div class="modal-contenido">
+    <h3>Registrar préstamo</h3>
+    <p id="nombrePrestamo"></p>
+
+    <label>Nombre solicitante</label>
+    <input type="text" id="solicitante">
+
+    <label>RUT solicitante</label>
+    <input type="text" id="rutSolicitante">
+
+    <label>Observación (opcional)</label>
+    <textarea id="obsPrestamo"></textarea>
+
+    <button id="confirmarPrestamo">Confirmar</button>
+    <button onclick="cerrarModalPrestamo()">Cancelar</button>
+  </div>
+</div>
+
+<!-- MODAL DEVOLUCION -->
+<div class="modal" id="modalDevolucion">
+  <div class="modal-contenido">
+    <h3>Registrar devolución</h3>
+    <p id="nombreDevolucion"></p>
+
+    <label>Estado al devolver</label>
+    <select id="estadoDevolucion">
+        <option value="disponible">Buen estado</option>
+        <option value="dañado">Dañado</option>
+    </select>
+
+    <div id="detalleDaño" style="display:none;">
+      <label>Descripción del daño</label>
+      <textarea id="descripcionDaño"></textarea>
+    </div>
+
+    <button id="confirmarDevolucion">Guardar</button>
+    <button onclick="cerrarModalDevolucion()">Cancelar</button>
+  </div>
+</div>
+
+<script src="../js/GestionArticulo.js"></script>
+</body>
+</html>
