@@ -52,6 +52,8 @@
         <div id="editarUsuario" class="oculto">
           <label> Buscar usuario a editar:</label>
           <input type="text" placeholder="Ej: nombre.apellido@duocuc.cl">
+          <label> Nuevo teléfono:</label>
+          <input type="text" placeholder="Actualizar información...">
           <label> Nuevo teléfono o correo:</label>
           <input type="text" placeholder="Actualizar información...">
         </div>
@@ -75,62 +77,6 @@
         <option>Director</option>
       </select>
 
-      <!--  Control de inventario -->
-      <h3 style="color: var(--color-primario); margin-top: 2rem;"> Control de Inventario</h3>
-      <label>Actualizar stock de materiales:</label>
-      <input type="text" id="material" placeholder="Nombre del material o equipo">
-      <input type="number" id="cantidad" placeholder="Cantidad disponible">
-
-      <!--  Generación de reportes -->
-      <h3 style="color: var(--color-primario); margin-top: 2rem;"> Generación de Reportes</h3>
-      <label for="tipoReporte">Formato del reporte:</label>
-      <select id="tipoReporte" required>
-        <option value="">Seleccionar formato...</option>
-        <option>PDF</option>
-        <option>CSV</option>
-      </select>
-
-      <!-- 🔹 Aprobación de reservas -->
-      <h3 style="color: var(--color-primario); margin-top: 2rem;"> Aprobación de Reservas</h3>
-      <label for="cantidadPendiente">Cantidad de solicitudes pendientes:</label>
-      <input type="number" id="cantidadPendiente" placeholder="Ej: 5" min="0">
-      <div class="check-linea">
-        <input type="checkbox" id="aprobaciones" checked>
-        <label for="aprobaciones">Aceptar o rechazar automáticamente reservas disponibles</label>
-      </div>
-
-      <!-- 🔹 Estadísticas -->
-      <h3 style="color: var(--color-primario); margin-top: 2rem;"> Estadísticas de Uso</h3>
-      <label>Seleccionar tipo de estadística:</label>
-      <select id="tipoEstadistica" onchange="mostrarEstadistica()" required>
-        <option value="">Seleccionar métrica...</option>
-        <option value="usuarios">Usuarios activos</option>
-        <option value="materiales">Materiales más solicitados</option>
-        <option value="prestamos">Historial de préstamos</option>
-      </select>
-
-      <!-- Panel donde se mostrarán las estadísticas -->
-      <div id="panelEstadisticas" class="oculto" style="margin-top: 1rem;">
-        <div id="estadisticaUsuarios" class="oculto info-box">
-          <h3> Usuarios activos</h3>
-          <p>Actualmente hay <strong>124 usuarios activos</strong> en el sistema.</p>
-        </div>
-
-        <div id="estadisticaMateriales" class="oculto info-box">
-          <h3> Materiales más solicitados</h3>
-          <ul>
-            <li>Proyector Epson - 45 reservas</li>
-            <li> Notebook Dell - 38 reservas</li>
-            <li> Cable HDMI - 22 reservas</li>
-          </ul>
-        </div>
-
-        <div id="estadisticaPrestamos" class="oculto info-box">
-          <h3> Historial de préstamos</h3>
-          <p>Última actualización: 05/11/2025</p>
-          <p>Se registraron <strong>312 préstamos</strong> y <strong>305 devoluciones</strong> este mes.</p>
-        </div>
-      </div>
 
       <!-- Botones -->
       <div class="acciones-modal" style="margin-top: 2rem;">
