@@ -1,0 +1,237 @@
+/* ===========================
+   ESTILO GENERAL
+=========================== */
+:root {
+  --header-h: 72px; /* altura del header fijo */
+  --page-vmargin: 32px; /* separación vertical */
+}
+
+/* === html y body === */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+
+  /* ✅ Fondo que cubre toda la pantalla */
+  background: linear-gradient(180deg, #d9e9ff 0%, #eaf3ff 40%, #f5f6fa 70%, #dbe8ff 100%);
+  background-attachment: fixed; /* 👈 evita el "corte" inferior */
+}
+
+/* === contenedor principal === */
+.contenedor-calendario {
+  max-width: 1200px;
+  margin: var(--page-vmargin) auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+  /* ✅ ocupa el alto visible (menos header y márgenes) */
+  min-height: calc(100dvh - var(--header-h) - (var(--page-vmargin) * 2));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+h1 {
+  text-align: center;
+  color: #2563eb;
+  margin-bottom: 1.5rem;
+}
+
+/* ===========================
+   MODO DE VISTA Y SELECTOR DE FECHA
+=========================== */
+.modo-vista {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.modo-vista button {
+  background: #2563eb;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modo-vista button:hover { background: #1e40af; }
+.modo-vista button.activo {
+  background: #1d4ed8;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.selector-fecha {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.selector-fecha label {
+  display: block;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.selector-fecha input[type="date"] {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.selector-fecha input[type="date"]:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.4);
+}
+
+/* 🌙 Modo oscuro selector */
+body.tema-oscuro .selector-fecha label { color: #f3f4f6; }
+body.tema-oscuro .selector-fecha input[type="date"] {
+  background: #374151; color: #f3f4f6; border-color: #4b5563;
+}
+
+/* ===========================
+   CONTROL DE VISTAS
+=========================== */
+.vista { display: none; }
+.vista.visible {
+  display: block;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ===========================
+   VISTA DIARIA
+=========================== */
+.tabla-dia {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.bloque-hora {
+  background: #e5e7eb;
+  padding: 0.8rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.bloque-hora.ocupado { background: #f87171; color: white; }
+.bloque-hora.libre   { background: #34d399; color: white; }
+.bloque-hora:hover   { transform: scale(1.05); }
+
+.aviso-no-clases {
+  padding: 1rem;
+  text-align: center;
+  background: #f3f4f6;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  color: #374151;
+}
+
+/* 🌙 Modo oscuro vista diaria */
+body.tema-oscuro .bloque-hora.libre { background: #047857; }
+body.tema-oscuro .bloque-hora.ocupado { background: #b91c1c; }
+body.tema-oscuro .aviso-no-clases {
+  background: #1f2937; border-color: #374151; color: #e5e7eb;
+}
+
+/* ===========================
+   VISTA SEMANAL
+=========================== */
+.titulo-semana {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+}
+body.tema-oscuro .titulo-semana { color: #f3f4f6; }
+
+.tabla-semana-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  text-align: center;
+}
+
+.tabla-semana-grid .celda {
+  padding: 0.6rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #f9fafb;
+  font-size: 0.95rem;
+  transition: 0.25s ease;
+}
+
+.tabla-semana-grid .encabezado {
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+  border-color: #2563eb;
+  text-transform: capitalize;
+}
+
+.tabla-semana-grid .hora {
+  font-weight: 600;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.tabla-semana-grid .ocupado { background: #ef4444; color: white; }
+.tabla-semana-grid .libre   { background: #10b981; color: white; }
+
+.tabla-semana-grid .no-clases {
+  background: #e5e7eb;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.tabla-semana-grid .celda:hover {
+  transform: scale(1.04);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+/* 🌙 Modo oscuro semanal */
+body.tema-oscuro .tabla-semana-grid .celda {
+  background: #1f2937; border-color: #374151; color: #f3f4f6;
+}
+body.tema-oscuro .tabla-semana-grid .encabezado {
+  background: #3b82f6; border-color: #3b82f6;
+}
+body.tema-oscuro .tabla-semana-grid .hora {
+  background: #374151; color: #f9fafb;
+}
+body.tema-oscuro .tabla-semana-grid .no-clases {
+  background: #2b2f36; color: #9ca3af;
+}
+
+/* ===========================
+   MODO OSCURO GLOBAL
+=========================== */
+body.tema-oscuro {
+  background: #111827;
+  color: #f3f4f6;
+  background-attachment: fixed;
+}
+body.tema-oscuro .contenedor-calendario {
+  background: #1f2937;
+  box-shadow: 0 0 10px rgba(255,255,255,0.05);
+}

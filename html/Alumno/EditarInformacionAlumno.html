@@ -13,28 +13,15 @@
 <body data-vista="editar-informacion">
 
   <!-- NAVBAR externo -->
-   <!-- NAVBAR -->
-    <header class="barra-superior">
-        <div class="logo">
-            <span class="logo-simbolo">CIIT</span>
-            <span class="logo-texto">Área de Informática</span>
-        </div>
+<header id="navbar"></header>
 
-        <nav class="menu-principal">
-            <a href="HomeAlumno.html" class="activo">Inicio</a>
-            <a href="PerfilAlumno.html">Perfil</a>
-            <a href="ReservaEspacio.html">Reserva espacios</a>
-            <a href="GestionArticulo.html.html">Reserva artículos</a>
-           
-        </nav>
-
-        <div class="acciones-header">
-            <label class="interruptor-tema">
-                <input type="checkbox" id="interruptorTema">
-                <span class="slider"></span>
-            </label>
-        </div>
-    </header>
+<script>
+  fetch("../Alumno/NavBarAlumno.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("navbar").innerHTML = data;
+    });
+</script>
 
   <!-- CONTENIDO PRINCIPAL -->
   <main class="reserva-contenedor">

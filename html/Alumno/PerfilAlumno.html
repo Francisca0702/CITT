@@ -9,102 +9,80 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 </head>
+
 <body data-vista="perfil">
 
-    <!-- NAVBAR -->
-    <header class="barra-superior">
-        <div class="logo">
-            <span class="logo-simbolo">CIIT</span>
-            <span class="logo-texto">Área de Informática</span>
-        </div>
+<header id="navbar"></header>
 
-        <nav class="menu-principal">
-            <a href="HomeAlumno.html">Inicio</a>
-            <a href="PerfilAlumno.html" class="activo">Perfil</a>
-            <a href="reservaEspacios.html">Reserva espacios</a>
-            <a href="GestionArticulo.html">Reserva artículos</a>
-            <a href="Calendario.html">Calendario</a>
-        </nav>
+<script>
+  fetch("../Alumno/NavBarAlumno.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("navbar").innerHTML = data;
+    });
+</script>
 
-        <div class="acciones-header">
-            <label class="interruptor-tema">
-                <input type="checkbox" id="interruptorTema">
-                <span class="slider"></span>
-            </label>
-        </div>
-    </header>
+<!-- PERFIL -->
+<main class="perfil-layout">
 
+  <!-- SECCIÓN FOTO Y NOMBRE -->
+  <div class="perfil-header">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="avatar" class="perfil-foto">
+      <h2 class="perfil-nombre">Camila Valenzuela</h2>
+      <p class="perfil-subtitulo">Área de Informática y Telecomunicaciones</p>
+  </div>
 
-    <!-- PERFIL -->
-    <main class="perfil-layout">
+  <!-- SECCIÓN TARJETAS INFORMACIÓN -->
+  <div class="perfil-cards">
+      <div class="info-box">
+          <h3>Información Personal</h3>
+          <p><strong>Correo:</strong> ca.valenzuelam@duocuc.cl</p>
+          <p><strong>Carrera:</strong> Analista Programador</p>
+          <p><strong>Sede:</strong> Valparaíso</p>
+          <p><strong>Jornada:</strong> Vespertina</p>
+      </div>
 
-    <!-- SECCIÓN FOTO Y NOMBRE -->
-    <div class="perfil-header">
-        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="avatar" class="perfil-foto">
-        <h2 class="perfil-nombre">Camila Valenzuela</h2>
-        <p class="perfil-subtitulo">Área de Informática y Telecomunicaciones</p>
-    </div>
+      <div class="info-box">
+          <h3>Actividad en el CIIT</h3>
+          <p><strong>Reservas activas:</strong> 1</p>
+          <p><strong>Artículos prestados:</strong> 2</p>
+          <p><strong>Devoluciones pendientes:</strong> 0</p>
+      </div>
+  </div>
 
-    <!-- SECCIÓN TARJETAS INFORMACIÓN -->
-    <div class="perfil-cards">
+  <!-- BOTÓN DE ACCIÓN -->
+  <div class="acciones-perfil">
+    <a href="./EditarInformacionAlumno.html" class="btn-primario">Editar información personal</a>
+  </div>
 
-        <div class="info-box">
-            <h3>Información Personal</h3>
-            <p><strong>Correo:</strong> ca.valenzuelam@duocuc.cl</p>
-            <p><strong>Carrera:</strong> Analista Programador</p>
-            <p><strong>Sede:</strong> Valparaíso</p>
-            <p><strong>Jornada:</strong> Vespertina</p>
-        </div>
-
-        <div class="info-box">
-            <h3>Actividad en el CIIT</h3>
-            <p><strong>Reservas activas:</strong> 1</p>
-            <p><strong>Artículos prestados:</strong> 2</p>
-            <p><strong>Devoluciones pendientes:</strong> 0</p>
-        </div>
-
-    </div>
-    <div class="acciones-perfil">
-      <a href="./EditarInformacionAlumno.html" class="btn-primario"> Editar información personal</a>
-    </div>
-    </div>
-    <div class="ReservaEspacios-perfil">
-      <a href="./ReservaEspacio.html" class="btn-primario"> Editar información personal</a>
-    </div>
-    
 </main>
 
+<!-- SCRIPT MODO OSCURO -->
+<script>
+  const interruptorTema = document.getElementById("interruptorTema");
 
+  if (localStorage.getItem("tema") === "oscuro") {
+      document.body.classList.add("tema-oscuro");
+      interruptorTema.checked = true;
+  }
 
+  interruptorTema.addEventListener("change", () => {
+      if (interruptorTema.checked) {
+          document.body.classList.add("tema-oscuro");
+          localStorage.setItem("tema", "oscuro");
+      } else {
+          document.body.classList.remove("tema-oscuro");
+          localStorage.setItem("tema", "claro");
+      }
+  });
 
-
-    <!-- SCRIPT MODO OSCURO -->
-    <script>
-        const interruptorTema = document.getElementById("interruptorTema");
-
-        if (localStorage.getItem("tema") === "oscuro") {
-            document.body.classList.add("tema-oscuro");
-            interruptorTema.checked = true;
-        }
-
-        interruptorTema.addEventListener("change", () => {
-            if (interruptorTema.checked) {
-                document.body.classList.add("tema-oscuro");
-                localStorage.setItem("tema", "oscuro");
-            } else {
-                document.body.classList.remove("tema-oscuro");
-                localStorage.setItem("tema", "claro");
-            }
-        });
-
-        // Cerrar sesión
-        document.getElementById("cerrarSesion").addEventListener("click", () => {
-            localStorage.clear();
-            window.location.href = "../index.html";
-        });
-    </script>
+  // Cerrar sesión
+  document.getElementById("cerrarSesion").addEventListener("click", () => {
+      localStorage.clear();
+      window.location.href = "../index.html";
+  });
+</script>
 
 </body>
 </html>
