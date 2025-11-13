@@ -1,366 +1,86 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>CIIT</title>
-    <link rel="stylesheet" href="../../css/NavBar.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CITT - Calendario General</title>
 
-    <!-- FullCalendar -->
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet" />
-    <style>
-      /* ---- Ajustes visuales de esta vista (sin tocar NavBar.css) ---- */
-        .contenedor-pagina {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1.5rem;
-        }
-        .card {
-            background: var(--color-fondo);
-            border-radius: 16px;
-            box-shadow: var(--sombra-suave);
-            padding: 1rem;
-        }
+  <!-- Estilos del navbar compartidos -->
+  <link rel="stylesheet" href="../../css/NavBar.css" />
+  <link rel="stylesheet" href="../../css/NavBarCoordinador.css" />
 
-        #calendario-admin {
-            max-width: 950px;
-            margin: 0 auto 1.25rem;
-        }
+  <!-- FullCalendar -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet" />
 
-        #calendario-admin .fc .fc-toolbar-title { 
-            font-size: 1.25rem; 
-            font-weight: 700; 
-        }
-      
-        #calendario-admin .fc .fc-button { 
-            border-radius: 10px; 
-            padding: .25rem .6rem; 
-        }
+  <!-- Estilos propios de esta vista -->
+  <link rel="stylesheet" href="../../css/CalendarioCoordinador.css" />
 
-        #calendario-admin .fc .fc-scroller {
-            overflow: visible !important;
-        }
-
-        #calendario-admin .fc-timeGridDay-view .fc-day-today,
-        #calendario-admin .fc-timeGridDay-view .fc-timegrid-col.fc-day-today,
-        #calendario-admin .fc-timeGridDay-view .fc-timegrid-col.fc-day-today .fc-timegrid-col-frame {
-            background: transparent !important;
-        }
-
-        #calendario-admin .fc .fc-event,
-        #calendario-admin .fc .fc-timegrid-event,
-        #calendario-admin .fc .fc-timegrid-event-harness {
-            cursor: pointer;
-        }
-
-        .seccion-titulo {
-            color: #0b1f3a; 
-            font-weight: 700; 
-            margin: .5rem 0 1rem;
-        }
-
-        body.tema-oscuro #calendario-admin .fc {
-            --fc-neutral-bg-color: #152238;
-            --fc-page-bg-color: transparent;
-            --fc-border-color: rgba(255,255,255,.08);
-            --fc-today-bg-color: rgba(48,127,226,.15);
-        }
-
-        body.tema-oscuro .card { background: #1f2937; }
-        body.tema-oscuro .seccion-titulo { color: #e5eefc; }
-
-        /* ===== Modal de detalle de solicitud ===== */
-        .overlay-detalle {
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.55);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 999;
-        }
-
-        .overlay-detalle.activo { display: flex; }
-
-        .detalle-card {
-            background: #ffffff;
-            border-radius: 18px;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.25);
-            max-width: 520px;
-            width: 90%;
-            padding: 1.5rem 1.75rem;
-            position: relative;
-        }
-
-        .detalle-card h3 {
-            margin-top: 0;
-            margin-bottom: 0.75rem;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #0b1f3a;
-        }
-
-        .detalle-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: .5rem 1.25rem;
-            font-size: .9rem;
-        }
-
-        .detalle-grid strong {
-            display: block;
-            font-weight: 600;
-            color: #4b5563;
-        }
-
-        .detalle-nota {
-            margin-top: .75rem;
-            font-size: .88rem;
-            color: #4b5563;
-        }
-
-        .detalle-cerrar {
-            position: absolute;
-            top: .6rem;
-            right: .6rem;
-            border: none;
-            background: transparent;
-            font-size: 1.4rem;
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        body.tema-oscuro .detalle-card {
-            background: #1f2937;
-            color: #e5e7eb;
-        }
-        body.tema-oscuro .detalle-card h3 { color: #e5eefc; }
-        body.tema-oscuro .detalle-grid strong { color: #e5e7eb; }
-        body.tema-oscuro .detalle-nota { color: #d1d5db; }
-
-    </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 </head>
 
-<body data-vista="espacios" data-rol="admin">
-    <header class="barra-superior">
-        <div class="logo">
-            <span class="logo-simbolo">CIIT</span>
-            <span class="logo-texto">Área de informática</span>
-        </div>
-        <nav class="menu-principal">
-            <a href="HomeCoordinador.html" data-link="home">Inicio</a>
-            <a href="PerfilCoordinador.html" data-link="perfil">Perfil</a>
-            <a href="InventarioArticulo.html" data-link="inventario">Inventario</a>
-            <a href="../views/reservas.html" data-link="reservas" class="activo">Gestión de reservas</a>
-      
-        </nav>
+<body data-vista="coordinador" data-rol="admin">
+  <!-- Navbar dinámico, mismo patrón que GestionReservasCoordinador -->
+  <header id="navbar"></header>
 
-        <div class="acciones-header">
-            <label class="interruptor-tema" aria-label="Cambiar tema">
-                <input type="checkbox" id="interruptorTema" />
-                <span class="slider"></span>
-            </label>
-            <span id="nombreUsuarioActivo" class="usuario-activo"></span>
-        </div>
-    </header>
+  <script>
+    fetch("./NavBarCoordinador.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
 
-    <main class="contenedor-pagina">
-      <!-- Calendario de reservas -->
-      <section id="calendario-admin" class="card" aria-label="Calendario de reservas">
-        <h2 class="seccion-titulo">Calendario de reservas CITT</h2>
-        <div id="calendar"></div>
-      </section>
+        // MODO OSCURO igual que en HomeCoordinador / GestiónReservas
+        const interruptorTema = document.getElementById("interruptorTema");
 
-      <!-- Modal detalle de solicitud -->
-      <div id="overlayDetalle" class="overlay-detalle" aria-hidden="true">
-        <div class="detalle-card" role="dialog" aria-modal="true" aria-labelledby="detalleTitulo">
-          <button type="button" class="detalle-cerrar" id="btnCerrarDetalle" aria-label="Cerrar detalle">&times;</button>
-          <h3 id="detalleTitulo">Detalle de la solicitud</h3>
-          <div id="detalleContenido"></div>
-        </div>
-      </div>
-    </main>
-
-    <!-- Scripts FullCalendar -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/locales-all.global.min.js"></script>
-
-    <script>
-      const COLOR_EVENTOS = {
-        "Sala de reuniones": "#10b981",
-        "Cápsula A": "#3b82f6",
-        "Sala CIIT completa": "#f97316",
-        "_default": "#307FE2",
-        "_exclusivo": "#e11d48"
-      };
-
-      // Tema oscuro persistente
-      const interruptorTema = document.getElementById("interruptorTema");
-      if (localStorage.getItem("tema") === "oscuro") {
-        document.body.classList.add("tema-oscuro");
-        interruptorTema.checked = true;
-      }
-      interruptorTema.addEventListener("change", () => {
-        if (interruptorTema.checked) {
+        if (localStorage.getItem("tema") === "oscuro") {
           document.body.classList.add("tema-oscuro");
-          localStorage.setItem("tema", "oscuro");
-        } else {
-          document.body.classList.remove("tema-oscuro");
-          localStorage.setItem("tema", "claro");
+          if (interruptorTema) interruptorTema.checked = true;
+        }
+
+        if (interruptorTema) {
+          interruptorTema.addEventListener("change", () => {
+            if (interruptorTema.checked) {
+              document.body.classList.add("tema-oscuro");
+              localStorage.setItem("tema", "oscuro");
+            } else {
+              document.body.classList.remove("tema-oscuro");
+              localStorage.setItem("tema", "claro");
+            }
+          });
+        }
+
+        // Marcar el link del calendario como activo (ajusta data-link si tu navbar usa otro)
+        const linkCalendario = document.querySelector('[data-link="calendario"]');
+        if (linkCalendario) {
+          linkCalendario.classList.add("activo");
         }
       });
+  </script>
 
-      // Eventos mock
-      const eventosMock = [
-        {
-          id: "e1",
-          title: "Reserva Sala 1 - Taller",
-          start: "2025-11-06T10:00:00",
-          end: "2025-11-06T12:00:00",
-          espacio: "Sala de reuniones",
-          exclusivo: false,
-          solicitante: "demo@duocuc.cl",
-          personas: 10,
-          articulos: ["Proyector"],
-          detalle: "Actividad demo cargada por defecto"
-        },
-        {
-          id: "e2",
-          title: "Cápsula A - Edición",
-          start: "2025-11-07T14:00:00",
-          end: "2025-11-07T15:00:00",
-          espacio: "Cápsula A",
-          exclusivo: false,
-          solicitante: "demo2@duocuc.cl",
-          personas: 3,
-          articulos: ["Micrófono", "Cámara"],
-          detalle: "Prueba de edición en cápsula"
-        },
-         {
-          id: "e3",
-          title: "Cápsula B - Edición",
-          start: "2025-11-15T14:00:00",
-          end: "2025-11-15T15:00:00",
-          espacio: "Cápsula A",
-          exclusivo: false,
-          solicitante: "demo2@duocuc.cl",
-          personas: 3,
-          articulos: ["Micrófono", "Cámara"],
-          detalle: "Prueba de edición en cápsula"
-        },
-         {
-          id: "e4",
-          title: "Cápsula A - Edición",
-          start: "2025-11-19T14:00:00",
-          end: "2025-11-07T15:00:00",
-          espacio: "Cápsula A",
-          exclusivo: false,
-          solicitante: "demo2@duocuc.cl",
-          personas: 3,
-          articulos: ["Micrófono", "Cámara"],
-          detalle: "Prueba de edición en cápsula"
-        }
-      ];
+  <main class="contenedor-pagina">
+    <!-- Calendario de reservas -->
+    <section id="calendario-admin" class="card" aria-label="Calendario de reservas">
+      <h2 class="seccion-titulo">Calendario de reservas CITT</h2>
+      <div id="calendar"></div>
+    </section>
 
-      // ---------- Calendario ----------
-      document.addEventListener("DOMContentLoaded", function() {
-        const calendarEl = document.getElementById("calendar");
-        const calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: window.innerWidth < 800 ? "timeGridDay" : "timeGridWeek",
-          locale: "es",
-          buttonText: { today: "Hoy", timeGridWeek: "Semana", timeGridDay: "Día" },
-          expandRows: true,
-          height: "auto",
-          nowIndicator: true,
-          slotDuration: "00:30:00",
-          slotMinTime: "08:00:00",
-          slotMaxTime: "23:00:00",
-          allDaySlot: false,
-          headerToolbar: { left: "prev,next today", center: "title", right: "timeGridWeek,timeGridDay" },
-          events: eventosMock,
-          eventDidMount: (info) => {
-            const { espacio, exclusivo } = info.event.extendedProps || {};
-            let color = exclusivo
-              ? COLOR_EVENTOS["_exclusivo"]
-              : COLOR_EVENTOS[espacio] || COLOR_EVENTOS["_default"];
-            info.el.style.backgroundColor = color;
-            info.el.style.borderColor = color;
-            info.el.style.color = "#ffffff";
-          },
-          eventClick: (info) => {
-            const ev = info.event;
-            const ext = ev.extendedProps || {};
+    <!-- Modal de detalle (solo visualización) -->
+    <div id="overlayDetalle" class="overlay-detalle" aria-hidden="true">
+      <div class="detalle-card" role="dialog" aria-modal="true" aria-labelledby="detalleTitulo">
+        <button type="button" class="detalle-cerrar" id="btnCerrarDetalle" aria-label="Cerrar detalle">&times;</button>
+        <h3 id="detalleTitulo">Detalle de la reserva</h3>
+        <div id="detalleContenido"></div>
+      </div>
+    </div>
+  </main>
 
-            const start = ev.start;
-            const end = ev.end || ev.start;
-            const pad = (n) => String(n).padStart(2, "0");
+  <!-- Scripts FullCalendar -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/locales-all.global.min.js"></script>
 
-            const fecha = `${start.getFullYear()}-${pad(start.getMonth() + 1)}-${pad(start.getDate())}`;
-            const inicio = `${pad(start.getHours())}:${pad(start.getMinutes())}`;
-            const fin = `${pad(end.getHours())}:${pad(end.getMinutes())}`;
-
-            const solFake = {
-              titulo: ev.title,
-              espacio: ext.espacio || ev.title,
-              fecha,
-              inicio,
-              fin,
-              solicitante: ext.solicitante || "No indicado",
-              personas: ext.personas != null ? ext.personas : "No indicado",
-              exclusivo: ext.exclusivo || false,
-              articulos: ext.articulos || [],
-              detalle: ext.detalle || ""
-            };
-
-            abrirDetalle(solFake);
-          },
-          windowResize: () => {
-            calendar.changeView(window.innerWidth < 800 ? "timeGridDay" : "timeGridWeek");
-          }
-        });
-        calendar.render();
-
-        // ----- Modal detalle -----
-        const overlayDetalle = document.getElementById("overlayDetalle");
-        const detalleContenido = document.getElementById("detalleContenido");
-        const btnCerrarDetalle = document.getElementById("btnCerrarDetalle");
-
-        const abrirDetalle = (sol) => {
-          const exclusividadTexto = sol.exclusivo
-            ? "Sí, uso exclusivo de la sala CIIT"
-            : "No, solo una sección / espacio específico";
-
-          const articulosTexto = sol.articulos && sol.articulos.length
-            ? sol.articulos.join(", ")
-            : "Sin artículos asociados";
-
-          detalleContenido.innerHTML = `
-            <div class="detalle-grid">
-              <div><strong>Espacio</strong><span>${sol.espacio}</span></div>
-              <div><strong>Fecha</strong><span>${sol.fecha}</span></div>
-              <div><strong>Horario</strong><span>${sol.inicio} - ${sol.fin}</span></div>
-              <div><strong>Solicitante</strong><span>${sol.solicitante}</span></div>
-              <div><strong>N° de personas</strong><span>${sol.personas}</span></div>
-              <div><strong>Exclusividad</strong><span>${exclusividadTexto}</span></div>
-            </div>
-            <div class="detalle-nota"><strong>Artículos solicitados:</strong><br/>${articulosTexto}</div>
-            <div class="detalle-nota"><strong>Detalle adicional:</strong><br/>${sol.detalle || "Sin detalle adicional"}</div>
-          `;
-          overlayDetalle.classList.add("activo");
-        };
-
-        const cerrarDetalle = () => overlayDetalle.classList.remove("activo");
-        btnCerrarDetalle.addEventListener("click", cerrarDetalle);
-        overlayDetalle.addEventListener("click", (e) => {
-          if (e.target === overlayDetalle) cerrarDetalle();
-        });
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "Escape") cerrarDetalle();
-        });
-      });
-    </script>
+  <!-- Script de esta vista (solo lectura) -->
+  <!-- Ajusta la ruta si lo guardas en otra carpeta -->
+  <script src="../../js/CalendarioCoordinador.js"></script>
 </body>
 </html>

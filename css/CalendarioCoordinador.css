@@ -1,0 +1,157 @@
+/* ---- Ajustes visuales de esta vista (sin tocar NavBar.css) ---- */
+.contenedor-pagina {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.card {
+  background: var(--color-fondo);
+  border-radius: 16px;
+  box-shadow: var(--sombra-suave);
+  padding: 1rem;
+}
+
+/* Calendario más angosto y centrado */
+#calendario-admin {
+  max-width: 950px;
+  margin: 0 auto 1.25rem;
+}
+
+/* Título toolbar */
+#calendario-admin .fc .fc-toolbar-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* Botones del calendario */
+#calendario-admin .fc .fc-button {
+  border-radius: 10px;
+  padding: 0.25rem 0.6rem;
+}
+
+/* Evitar scroll interno del timeGrid */
+#calendario-admin .fc .fc-scroller {
+  overflow: visible !important;
+}
+
+/* Quitar fondo amarillo chillón en vista por día */
+#calendario-admin .fc-timeGridDay-view .fc-day-today,
+#calendario-admin .fc-timeGridDay-view .fc-timegrid-col.fc-day-today,
+#calendario-admin
+  .fc-timeGridDay-view
+  .fc-timegrid-col.fc-day-today
+  .fc-timegrid-col-frame {
+  background: transparent !important;
+}
+
+/* Eventos clicables en el calendario: mostrar mano */
+#calendario-admin .fc .fc-event,
+#calendario-admin .fc .fc-timegrid-event,
+#calendario-admin .fc .fc-timegrid-event-harness {
+  cursor: pointer;
+}
+
+/* Título sección */
+.seccion-titulo {
+  color: #0b1f3a;
+  font-weight: 700;
+  margin: 0.5rem 0 1rem;
+}
+
+/* Mejor contraste en modo oscuro del calendario */
+body.tema-oscuro #calendario-admin .fc {
+  --fc-neutral-bg-color: #152238;
+  --fc-page-bg-color: transparent;
+  --fc-border-color: rgba(255, 255, 255, 0.08);
+  --fc-today-bg-color: rgba(48, 127, 226, 0.15);
+}
+
+body.tema-oscuro .card {
+  background: #1f2937;
+}
+
+body.tema-oscuro .seccion-titulo {
+  color: #e5eefc;
+}
+
+/* ===== Modal de detalle de reserva ===== */
+.overlay-detalle {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.overlay-detalle.activo {
+  display: flex;
+}
+
+.detalle-card {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+  max-width: 520px;
+  width: 90%;
+  padding: 1.5rem 1.75rem;
+  position: relative;
+}
+
+.detalle-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0b1f3a;
+}
+
+.detalle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+}
+
+.detalle-grid strong {
+  display: block;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.detalle-nota {
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  color: #4b5563;
+}
+
+.detalle-cerrar {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  border: none;
+  background: transparent;
+  font-size: 1.4rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Modo oscuro para el modal */
+body.tema-oscuro .detalle-card {
+  background: #1f2937;
+  color: #e5e7eb;
+}
+
+body.tema-oscuro .detalle-card h3 {
+  color: #e5eefc;
+}
+
+body.tema-oscuro .detalle-grid strong {
+  color: #e5e7eb;
+}
+
+body.tema-oscuro .detalle-nota {
+  color: #d1d5db;
+}
