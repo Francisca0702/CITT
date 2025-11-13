@@ -6,32 +6,40 @@
   <title>CITT - Panel Docente</title>
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="../css/NavBar.css" />
+  <link rel="stylesheet" href="../../css/NavBar.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
 </head>
 
 <body data-vista="home-docente">
+
   <!-- NAVBAR externo -->
-  <iframe 
-    src="./NavBarDocente.html"
-    style="width:100%; height:100px; border:none;"
-    title="Navbar Docente">
-  </iframe>
+  <header id="navbar"></header>
+
+    <script>
+    fetch("../Docente/NavBarDocente.html")
+        .then(response => response.text())
+        .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+        });
+    </script>
+
+    
 
   <!-- CONTENIDO PRINCIPAL -->
+
   <main class="dashboard">
     <h1 class="titulo-dashboard">¡Hola, Docente!</h1>
     <p class="subtexto-dashboard">Selecciona una opción</p>
 
     <section class="grid-opciones">
-      <a href="ReservaEspacio.html" class="card-opcion">
+      <a href="GestionEspacioDocente.html" class="card-opcion">
         <h3>Reservar Espacios</h3>
         <p>Salas · Cubículos</p>
       </a>
 
-      <a href="GestionArticulo.html.html" class="card-opcion">
+      <a href="GestionArticulosDocente.html" class="card-opcion">
         <h3>Reservar Artículos</h3>
         <p>Equipos · Herramientas · Materiales</p>
       </a>
@@ -41,7 +49,7 @@
         <p>Horarios y disponibilidad</p>
       </a>
 
-      <a href="HistorialPrestamo.html" class="card-opcion">
+      <a href="HistorialPrestamoDocente.html" class="card-opcion">
         <h3>Mis Préstamos</h3>
         <p>Estado · Historial · Devoluciones</p>
       </a>

@@ -1,132 +1,167 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CITT - Configuración Coordinador</title>
-  <link rel="stylesheet" href="../css/NavBar.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CITT - Configuración del Coordinador</title>
+
+    <link rel="stylesheet" href="../../css/NavBar.css">
+    <link rel="stylesheet" href="../../css/NavBarCoordinador.css">
+    <link rel="stylesheet" href="../../css/EditarInformacion.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body data-vista="configuracion-coordinador">
+<body data-vista="coordinador">
 
-  <!-- NAVBAR externo -->
-  <iframe 
-    src="./NavBarCoordinador.html" 
-    style="width:100%; height:100px; border:none;" 
-    title="Navbar Coordinador">
-  </iframe>
+    <!-- NAVBAR CARGADO CON FETCH -->
+    <header id="navbar"></header>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <main class="reserva-contenedor">
-    <h2 class="titulo-pagina"> Configuración del Sistema - Coordinador</h2>
-    <p>Gestiona usuarios, inventario, reportes, aprobaciones y estadísticas del CITT.</p>
+    <script>
+    fetch("./NavBarCoordinador.html")
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById("navbar").innerHTML = html;
 
-    <form class="modal-form" id="formConfigCoordinador" onsubmit="mostrarMensaje(event)">
+            const interruptorTema = document.getElementById("interruptorTema");
 
-      <!-- 🔹 Gestión de usuarios -->
-      <h3 style="color: var(--color-primario); margin-top: 2rem;"> Gestión de Usuarios</h3>
-      <label>Selecciona acción:</label>
-      <select id="accionUsuario" onchange="mostrarAccionUsuario()" required>
-        <option value="">Seleccionar acción...</option>
-        <option value="crear">Crear usuario</option>
-        <option value="editar">Editar usuario</option>
-        <option value="eliminar">Eliminar usuario</option>
-      </select>
+            if (localStorage.getItem("tema") === "oscuro") {
+                document.body.classList.add("tema-oscuro");
+                interruptorTema.checked = true;
+            }
 
-      <!-- Campos dinámicos según selección -->
-      <div id="seccionUsuario" class="oculto">
-        <!-- Crear usuario -->
-        <div id="crearUsuario" class="oculto">
-          <label> Nombre completo:</label>
-          <input type="text" placeholder="Ej: Carlos Pérez">
-          <label> Correo institucional:</label>
-          <input type="email" placeholder="carlos.perez@duocuc.cl">
-          <label> Contraseña temporal:</label>
-          <input type="password" placeholder="********">
+            interruptorTema.addEventListener("change", () => {
+                if (interruptorTema.checked) {
+                    document.body.classList.add("tema-oscuro");
+                    localStorage.setItem("tema", "oscuro");
+                } else {
+                    document.body.classList.remove("tema-oscuro");
+                    localStorage.setItem("tema", "claro");
+                }
+            });
+        });
+    </script>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="reserva-contenedor">
+
+        <h2 class="titulo-pagina">Configuración del Sistema - Coordinador</h2>
+        <p>Gestiona usuarios, inventario, reportes, aprobaciones y estadísticas del CITT.</p>
+
+        <form class="modal-form" id="formConfigCoordinador" onsubmit="mostrarMensaje(event)">
+
+            <!-- ================================
+                 GESTIÓN DE USUARIOS
+            ================================= -->
+            <h3>Gestión de Usuarios</h3>
+
+            <label>Selecciona acción:</label>
+            <select id="accionUsuario" onchange="mostrarAccionUsuario()" required>
+                <option value="">Seleccionar acción...</option>
+                <option value="crear">Crear usuario</option>
+                <option value="editar">Editar usuario</option>
+                <option value="eliminar">Eliminar usuario</option>
+            </select>
+
+            <!-- Sección que cambia dinámicamente -->
+            <div id="seccionUsuario" class="oculto">
+
+                <!-- CREAR USUARIO -->
+                <div id="crearUsuario" class="oculto">
+                    <label>Nombre completo:</label>
+                    <input type="text" placeholder="Ej: Carlos Pérez">
+
+                    <label>Correo institucional:</label>
+                    <input type="email" placeholder="carlos.perez@duocuc.cl">
+
+                    <label>Contraseña temporal:</label>
+                    <input type="password" placeholder="********">
+                </div>
+
+                <!-- EDITAR USUARIO -->
+                <div id="editarUsuario" class="oculto">
+                    <label>Usuario a editar:</label>
+                    <input type="text" placeholder="nombre.apellido@duocuc.cl">
+
+                    <label>Nuevo teléfono:</label>
+                    <input type="text" placeholder="Ej: +56 9 ...">
+
+                    <label>Nuevo correo o datos:</label>
+                    <input type="text" placeholder="Actualizar información...">
+                </div>
+
+                <!-- ELIMINAR USUARIO -->
+                <div id="eliminarUsuario" class="oculto">
+                    <label>Correo del usuario a eliminar:</label>
+                    <input type="email" placeholder="usuario@duocuc.cl">
+                </div>
+            </div>
+
+            <!-- ================================
+                 ASIGNACIÓN DE ROLES
+            ================================= -->
+            <h3>Asignación de Roles</h3>
+
+            <label>Cambiar rol a:</label>
+            <select id="rolAsignado" required>
+                <option value="">Seleccionar rol...</option>
+                <option>Alumno</option>
+                <option>Ayudante</option>
+                <option>Docente</option>
+                <option>Coordinador</option>
+                <option>Director</option>
+            </select>
+
+            <!-- BOTONES -->
+            <div class="acciones-modal">
+                <button type="submit" class="btn-primario">Guardar cambios</button>
+                <a href="./PerfilCoordinador.html" class="btn-secundario">Cancelar</a>
+            </div>
+
+        </form>
+
+        <!-- POPUP DE ÉXITO -->
+        <div id="popupExito" class="popup-oculto">
+            <div class="popup-contenido">
+                <h3>Cambios guardados</h3>
+                <p>El sistema ha actualizado correctamente la configuración.</p>
+                <a href="./PerfilCoordinador.html" class="btn-primario">Volver al perfil</a>
+            </div>
         </div>
 
-        <!-- Editar usuario -->
-        <div id="editarUsuario" class="oculto">
-          <label> Buscar usuario a editar:</label>
-          <input type="text" placeholder="Ej: nombre.apellido@duocuc.cl">
-          <label> Nuevo teléfono:</label>
-          <input type="text" placeholder="Actualizar información...">
-          <label> Nuevo teléfono o correo:</label>
-          <input type="text" placeholder="Actualizar información...">
-        </div>
+    </main>
 
-        <!-- Eliminar usuario -->
-        <div id="eliminarUsuario" class="oculto">
-          <label> Correo del usuario a eliminar:</label>
-          <input type="email" placeholder="usuario@duocuc.cl">
-        </div>
-      </div>
+    <!-- SCRIPT DE LÓGICA -->
+    <script>
+        // Mostrar campos según acción
+        function mostrarAccionUsuario() {
+            const seleccion = document.getElementById("accionUsuario").value;
 
-      <!-- 🔹 Asignación de roles -->
-      <h3 style="color: var(--color-primario); margin-top: 2rem;"> Asignación de Roles</h3>
-      <label for="rolAsignado">Cambiar rol a:</label>
-      <select id="rolAsignado" required>
-        <option value="">Seleccionar rol...</option>
-        <option>Alumno</option>
-        <option>Ayudante</option>
-        <option>Docente</option>
-        <option>Coordinador</option>
-        <option>Director</option>
-      </select>
+            document.getElementById("seccionUsuario").classList.remove("oculto");
 
+            ["crearUsuario", "editarUsuario", "eliminarUsuario"].forEach(id => {
+                document.getElementById(id).classList.add("oculto");
+            });
 
-      <!-- Botones -->
-      <div class="acciones-modal" style="margin-top: 2rem;">
-        <button type="submit" class="btn-primario"> Guardar cambios</button>
-        <a href="./PerfilCoordinador.html" class="btn-secundario">Cancelar</a>
-      </div>
-    </form>
+            if (seleccion) {
+                document.getElementById(seleccion + "Usuario").classList.remove("oculto");
+            }
+        }
 
-    <!-- Mensaje de éxito -->
-    <div id="popupExito" class="popup-oculto">
-      <div class="popup-contenido">
-        <h3> Cambios guardados</h3>
-        <p>El sistema ha actualizado correctamente la configuración y la base de datos.</p>
-        <a href="./PerfilCoordinador.html" class="btn-primario">Volver al perfil</a>
-      </div>
-    </div>
-  </main>
+        // Mostrar mensaje de éxito
+        function mostrarMensaje(e) {
+            e.preventDefault();
+            document.getElementById("popupExito").classList.remove("popup-oculto");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
 
-  <script>
-    // 🔸 Mostrar campos según acción de usuario
-    function mostrarAccionUsuario() {
-      const seleccion = document.getElementById("accionUsuario").value;
-      document.getElementById("seccionUsuario").classList.remove("oculto");
-      ["crearUsuario", "editarUsuario", "eliminarUsuario"].forEach(id => {
-        document.getElementById(id).classList.add("oculto");
-      });
-      if (seleccion) document.getElementById(seleccion + "Usuario").classList.remove("oculto");
-    }
+        // Activar modo oscuro si estaba guardado
+        if (localStorage.getItem("tema") === "oscuro") {
+            document.body.classList.add("tema-oscuro");
+        }
+    </script>
 
-    // 🔸 Mostrar panel de estadísticas
-    function mostrarEstadistica() {
-      const seleccion = document.getElementById("tipoEstadistica").value;
-      document.getElementById("panelEstadisticas").classList.remove("oculto");
-      ["estadisticaUsuarios", "estadisticaMateriales", "estadisticaPrestamos"].forEach(id => {
-        document.getElementById(id).classList.add("oculto");
-      });
-      if (seleccion) document.getElementById("estadistica" + seleccion.charAt(0).toUpperCase() + seleccion.slice(1)).classList.remove("oculto");
-    }
-
-    // 🔸 Mensaje de confirmación
-    function mostrarMensaje(e) {
-      e.preventDefault();
-      document.getElementById("popupExito").classList.remove("popup-oculto");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    // 🔸 Activar modo oscuro si estaba guardado
-    if (localStorage.getItem("tema") === "oscuro") {
-      document.body.classList.add("tema-oscuro");
-    }
-  </script>
 </body>
 </html>
