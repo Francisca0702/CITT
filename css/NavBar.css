@@ -15,13 +15,13 @@ body {
    PALETA INSTITUCIONAL
 ======================== */
 :root {
-    --color-primario: #307FE2;      /* Azul corporativo principal */
-    --color-secundario: #8BB8E8;    /* Azul claro institucional */
-    --color-acento: #FFB800;        /* Amarillo Duoc UC */
+    --color-primario: #307FE2;     
+    --color-secundario: #8BB8E8;   
+    --color-acento: #FFB800;       
     --color-texto: #1A1A1A;
     --color-fondo: #FFFFFF;
     --color-gris: #EEEEEE;
-    --sombra-suave: 0 8px 25px rgba(0, 0, 0, 0.12);
+    --sombra-suave: 0 8px 25px rgba(0,0,0,0.12);
 }
 
 /* ========================
@@ -89,8 +89,39 @@ body {
 input:checked + .slider { background-color: var(--color-acento); }
 input:checked + .slider::before { transform: translateX(24px); }
 
+/* =========================================================
+   MODO OSCURO GLOBAL — ORDENADO Y OPTIMIZADO
+========================================================= */
 
+body.tema-oscuro {
+    /* Variables actualizadas */
+    --color-fondo: #111827;
+    --color-texto: #f3f4f6;
+    --color-gris: #1f2937;
+    --color-primario: #1e3a8a;
+    --color-secundario: #3b82f6;
 
+    /* Fondo general oscuro */
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #111827 100%) !important;
+    color: var(--color-texto);
+}
+
+/* Logo visible en oscuro */
+body.tema-oscuro .logo-simbolo,
+body.tema-oscuro .logo-texto {
+    color: #ffffff !important;
+}
+
+/* Navbar se adapta al modo oscuro */
+body.tema-oscuro .barra-superior {
+    background-color: var(--color-primario);
+}
+
+/* Enlaces dentro de contenido (no del navbar) */
+body.tema-oscuro main a,
+body.tema-oscuro section a {
+    color: var(--color-texto);
+}
 
 
 

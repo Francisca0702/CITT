@@ -10,6 +10,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 
+  <!-- NAVBAR externo -->
+    <header id="navbar"></header>
+
+    <script>
+    fetch("../Docente/NavBarDocente.html")
+        .then(response => response.text())
+        .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+        });
+    </script>
+
   <!-- FullCalendar -->
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet" />
 
@@ -138,28 +149,7 @@
 
 <body data-vista="calendario" data-rol="docente">
 
-  <!-- NAVBAR DOCENTE (Basado en tu referencia de Panel Alumno) -->
-  <header class="barra-superior">
-    <div class="logo">
-      <span class="logo-simbolo">CIIT</span>
-      <span class="logo-texto">Panel Docente</span>
-    </div>
-
-    <nav class="menu-principal">
-      <a href="HomeDocente.html">Inicio</a>
-      <a href="PerfilDocente.html">Perfil</a>
-      <a href="GestionReservasCoordinador.html">Reserva espacios</a>
-      <a href="GestionArticulo.html.html">Reserva artículos</a>
-      <a href="CalendarioDocente.html" class="activo">Calendario</a>
-    </nav>
-
-    <div class="acciones-header">
-      <label class="interruptor-tema">
-        <input type="checkbox" id="interruptorTema">
-        <span class="slider"></span>
-      </label>
-    </div>
-  </header>
+  
 
   <!-- CONTENIDO -->
   <main class="contenedor-pagina">

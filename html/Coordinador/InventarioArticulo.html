@@ -1,66 +1,95 @@
-        <!DOCTYPE html>
-        <html lang="es">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>CIIT</title>
-            <link rel="stylesheet" href="../css/NavBar.css">
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-        </head>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIIT - Inventario Artículo</title>
 
-        <body>
-                <iframe 
-                    src="./NavBarCoordinador.html"
-                    style="width:100%; height:100px; border:none;"
-                    title="Navbar Coordinador">
-                </iframe>
-
-        <section class="contenedor-inventario">
-
-            <div class="card-form">
-                <h2>Registrar nuevo artículo</h2>
-
-                <form id="formInventario" class="form-grid">
-
-                    <div class="form-grupo">
-                        <label>Nombre del artículo</label>
-                        <input type="text" id="nombreArticulo" placeholder="Teclado..." required>
-                    </div>
-
-                    <div class="form-grupo">
-                        <label>Categoría</label>
-                        <select id="categoriaArticulo">
-                            <option>Electrónica</option>
-                            <option>Prototipado</option>
-                            <option>Computación</option>
-                            <option>Audiovisual</option>
-                        </select>
-                    </div>
-
-                    <div class="form-grupo">
-                        <label>Cantidad</label>
-                        <input type="number" id="cantidadArticulo" min="1" value="1">
-                    </div>
-
-                    <div class="form-grupo">
-                        <label>Valor (opcional)</label>
-                        <input type="number" id="valorArticulo" placeholder="$">
-                    </div>
-
-                    <div class="form-grupo full">
-                        <label>Código único (scan con pistola lectora)</label>
-                        <input type="text" id="codigoArticulo" placeholder="Escanear aquí..." autofocus>
-                    </div>
-
-                    <button type="submit" class="btn-guardar full">Registrar artículo</button>
-
-                </form>
-            </div>
+    <link rel="stylesheet" href="../../css/NavBar.css">
+    <link rel="stylesheet" href="../../css/NavBarCoordinador.css">
+    <link rel="stylesheet" href="../../css/InventarioArticulo.css">
 
 
-            <!-- LISTA DE ARTÍCULOS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body data-vista="coordinador">
+
+    <!-- NAVBAR -->
+    <header id="navbar"></header>
+
+    <script>
+    fetch("./NavBarCoordinador.html")
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById("navbar").innerHTML = html;
+
+            // Activar modo oscuro después de cargar el navbar
+            const interruptorTema = document.getElementById("interruptorTema");
+
+            if (localStorage.getItem("tema") === "oscuro") {
+                document.body.classList.add("tema-oscuro");
+                interruptorTema.checked = true;
+            }
+
+            interruptorTema.addEventListener("change", () => {
+                if (interruptorTema.checked) {
+                    document.body.classList.add("tema-oscuro");
+                    localStorage.setItem("tema", "oscuro");
+                } else {
+                    document.body.classList.remove("tema-oscuro");
+                    localStorage.setItem("tema", "claro");
+                }
+            });
+        });
+    </script>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <section class="contenedor-inventario">
+
+        <div class="card-form">
+            <h2>Registrar nuevo artículo</h2>
+
+            <form id="formInventario" class="form-grid">
+
+                <div class="form-grupo">
+                    <label>Nombre del artículo</label>
+                    <input type="text" id="nombreArticulo" placeholder="Teclado..." required>
+                </div>
+
+                <div class="form-grupo">
+                    <label>Categoría</label>
+                    <select id="categoriaArticulo">
+                        <option>Electrónica</option>
+                        <option>Prototipado</option>
+                        <option>Computación</option>
+                        <option>Audiovisual</option>
+                    </select>
+                </div>
+
+                <div class="form-grupo">
+                    <label>Cantidad</label>
+                    <input type="number" id="cantidadArticulo" min="1" value="1">
+                </div>
+
+                <div class="form-grupo">
+                    <label>Valor (opcional)</label>
+                    <input type="number" id="valorArticulo" placeholder="$">
+                </div>
+
+                <div class="form-grupo full">
+                    <label>Código</label>
+                    <input type="text" id="codigoArticulo" placeholder="Escanear aquí..." autofocus>
+                </div>
+
+                <button type="submit" class="btn-guardar full">Registrar artículo</button>
+
+            </form>
+        </div>
+
+        <!-- LISTA DE ARTÍCULOS -->
         <div class="card-tabla">
             <h3>Artículos registrados</h3>
 
@@ -83,8 +112,9 @@
 
         <div id="toast" class="toast">Artículo registrado correctamente</div>
 
-        </section>
-        <script src="../js/InventarioArticulo.js"></script>
+    </section>
+
+    <script src="../../js/InventarioArticulo.js"></script>
+
 </body>
 </html>
-
