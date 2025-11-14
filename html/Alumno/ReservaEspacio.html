@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservar Espacios CIIT</title>
 
-    <link rel="stylesheet" href="../css/NavBar.css">
-    <link rel="stylesheet" href="../css/ReservaEspacio.css">
+    <link rel="stylesheet" href="../../css/NavBar.css">
 </head>
 
 <!-- POPUP DE ÉXITO -->
@@ -19,29 +18,17 @@
 </div>
 
 
-<body>
+<body data-vista="reserva">>
 
-<header class="barra-superior">
-    <div class="logo">
-        <span class="logo-simbolo">CIIT</span>
-        <span class="logo-texto">Área de Informática</span>
-    </div>
+<header id="navbar"></header>
 
-    <nav class="menu-principal">
-        <a href="InicioAlumno.html">Inicio</a>
-        <a href="PerfilAlumno.html">Perfil</a>
-        <a class="activo" href="ReservaEspacio.html">Reserva espacios</a>
-        <a href="ReservaArticulos.html">Reserva artículos</a>
-        <a href="Calendario.html">Calendario</a>
-    </nav>
-
-    <div class="acciones-header">
-        <label class="interruptor-tema">
-            <input type="checkbox" id="interruptorTema">
-            <span class="slider"></span>
-        </label>
-    </div>
-</header>
+<script>
+  fetch("../Alumno/NavBarAlumno.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("navbar").innerHTML = data;
+    });
+</script>
 
 <div class="reserva-contenedor">
     <h1 class="titulo-pagina">Reservar Espacio</h1>
@@ -156,6 +143,6 @@
   </div>
 </div>
 
-<script src="../js/ReservaEspacio.js"></script>
+<script src="../../js/ReservaEspacio.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendario de Espacios CITT</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../../css/NavBarDocente.css">
+  <link rel="stylesheet" href="../../css/CalendarioAlumno.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- NAVBAR externo -->
+
+  <!-- NAVBAR dinámico (SIN IFRAME) -->
+  <header id="navbar"></header>
+
+  <script>
+    fetch("../Docente/NavBarDocente.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar").innerHTML = html;
+
+        // Activar modo oscuro desde el navbar cargado
+        const interruptor = document.getElementById("interruptorTema");
+
+        if (localStorage.getItem("tema") === "oscuro") {
+          document.body.classList.add("tema-oscuro");
+          interruptor.checked = true;
+        }
+
+        interruptor.addEventListener("change", () => {
+          if (interruptor.checked) {
+            document.body.classList.add("tema-oscuro");
+            localStorage.setItem("tema", "oscuro");
+          } else {
+            document.body.classList.remove("tema-oscuro");
+            localStorage.setItem("tema", "claro");
+          }
+        });
+      });
+  </script>
+
+  <main class="contenedor-calendario">
+
+    <h1>Calendario reserva espacios</h1>
+
+        <div class="modo-vista">
+            <button id="btnDiario" class="activo">Vista diaria</button>
+            <button id="btnSemanal">Vista semanal</button>
+        </div>
+
+        <div class="selector-fecha">
+            <label for="fechaCalendario">Selecciona una fecha:</label>
+            <input type="date" id="fechaCalendario">
+        </div>
+
+    <section id="vistaDiaria" class="vista visible">
+      <h2 id="tituloDia">Disponibilidad diaria</h2>
+      <div id="tablaDia" class="tabla-dia"></div>
+    </section>
+
+    <section id="vistaSemanal" class="vista">
+      <div id="tablaSemana" class="tabla-semana"></div>
+    </section>
+
+  </main>
+
+  <script src="../../js/CalendarioAlumno.js" defer></script>
+</body>
+</html>

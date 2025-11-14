@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CITT - Gestión de Reservas</title>
+
+  <!-- Estilos del navbar compartidos -->
+  <link rel="stylesheet" href="../../css/NavBar.css">
+  <link rel="stylesheet" href="../../css/NavBarCoordinador.css">
+
+  <!-- FullCalendar -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet" />
+
+  <!-- Estilos propios de esta vista -->
+  <link rel="stylesheet" href="../../css/GestionReservasCoordinador.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+</head>
+
+<!-- ahora usamos la misma vista que HomeCoordinador -->
+<body data-vista="coordinador" data-rol="admin">
+
+  <!-- MISMA mecánica de navbar que en HomeCoordinador -->
+  <header id="navbar"></header>
+
+  <script>
+    fetch("./NavBarCoordinador.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+
+        // MODO OSCURO: igualito a HomeCoordinador
+        const interruptorTema = document.getElementById("interruptorTema");
+
+        if (localStorage.getItem("tema") === "oscuro") {
+          document.body.classList.add("tema-oscuro");
+          interruptorTema.checked = true;
+        }
+
+        interruptorTema.addEventListener("change", () => {
+          if (interruptorTema.checked) {
+            document.body.classList.add("tema-oscuro");
+            localStorage.setItem("tema", "oscuro");
+          } else {
+            document.body.classList.remove("tema-oscuro");
+            localStorage.setItem("tema", "claro");
+          }
+        });
+
+        // Opcional: marcar esta vista como activa si tu NavBarCoordinador tiene data-link
+        const linkReservas = document.querySelector('[data-link="reservas"]');
+        if (linkReservas) {
+          linkReservas.classList.add("activo");
+        }
+      });
+  </script>
+
+  <main class="contenedor-pagina">
+    <!-- Calendario de reservas -->
+    <section id="calendario-admin" class="card" aria-label="Calendario de reservas">
+      <h2 class="seccion-titulo">Calendario de reservas CITT</h2>
+      <div id="calendar"></div>
+    </section>
+
+    <!-- Solicitudes (deja lo que ya tienes) -->
+    <section class="solicitudes-wrap">
+      <h2 class="seccion-titulo">Solicitudes de reserva pendientes</h2>
+      <div class="tabla-solicitudes-wrap">
+        <table class="tabla-solicitudes" aria-label="Solicitudes de reserva pendientes">
+          <thead>
+            <tr>
+              <th>Espacio</th>
+              <th>Fecha</th>
+              <th>Horario</th>
+              <th>Solicitante</th>
+              <th>Detalle</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="listaSolicitudes"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Modal detalle de solicitud -->
+    <div id="overlayDetalle" class="overlay-detalle" aria-hidden="true">
+      <div class="detalle-card" role="dialog" aria-modal="true" aria-labelledby="detalleTitulo">
+        <button type="button" class="detalle-cerrar" id="btnCerrarDetalle" aria-label="Cerrar detalle">&times;</button>
+        <h3 id="detalleTitulo">Detalle de la solicitud</h3>
+        <div id="detalleContenido"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts FullCalendar -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/locales-all.global.min.js"></script>
+
+  <!-- Script de esta vista -->
+  <script src="../../js/GestionReservasCoordinador.js"></script>
+
+  <script>
+    initGestionReservasCoordinador();
+  </script>
+</body>
+</html>

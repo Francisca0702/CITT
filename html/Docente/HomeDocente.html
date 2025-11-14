@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CITT - Panel Docente</title>
+
+  <!-- Estilos correctos -->
+  <link rel="stylesheet" href="../../css/NavBarDocente.css">
+  <link rel="stylesheet" href="../../css/NavBar.css">
+</head>
+
+<body data-vista="home-docente">
+
+  <!-- NAVBAR externo -->
+  <header id="navbar"></header>
+
+  <script>
+    fetch("../Docente/NavBarDocente.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar").innerHTML = html;
+
+        // ACTIVAR MODO OSCURO
+        const interruptor = document.getElementById("interruptorTema");
+
+        if (localStorage.getItem("tema") === "oscuro") {
+            document.body.classList.add("tema-oscuro");
+            interruptor.checked = true;
+        }
+
+        interruptor.addEventListener("change", () => {
+            if (interruptor.checked) {
+                document.body.classList.add("tema-oscuro");
+                localStorage.setItem("tema", "oscuro");
+            } else {
+                document.body.classList.remove("tema-oscuro");
+                localStorage.setItem("tema", "claro");
+            }
+        });
+      });
+  </script>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="dashboard">
+    <h1 class="titulo-dashboard">¡Hola, Docente!</h1>
+    <p class="subtexto-dashboard">Selecciona una opción</p>
+
+    <section class="grid-opciones">
+      <a href="GestionEspacioDocente.html" class="card-opcion">
+        <h3>Reservar Espacios</h3>
+        <p>Salas · Cubículos</p>
+      </a>
+
+      <a href="GestionArticulosDocente.html" class="card-opcion">
+        <h3>Reservar Artículos</h3>
+        <p>Equipos · Herramientas · Materiales</p>
+      </a>
+
+      <a href="CalendarioDocente.html" class="card-opcion">
+        <h3>Calendario</h3>
+        <p>Horarios y disponibilidad</p>
+      </a>
+
+      <a href="HistorialPrestamoDocente.html" class="card-opcion">
+        <h3>Mis Préstamos</h3>
+        <p>Estado · Historial · Devoluciones</p>
+      </a>
+    </section>
+  </main>
+
+</body>
+</html>

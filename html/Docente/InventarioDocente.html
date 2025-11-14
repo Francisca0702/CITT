@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CITT - Inventario Docente</title>
+
+  <!-- Estilos globales -->
+  
+  <!-- Estilos del docente -->
+   <link rel="stylesheet" href="../../css/NavBar.css">
+  <link rel="stylesheet" href="../../css/NavBarDocente.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body data-vista="home-docente">
+
+  <!-- NAVBAR externo -->
+  <header id="navbar"></header>
+
+  <script>
+    fetch("../Docente/NavBarDocente.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar").innerHTML = html;
+
+        // ACTIVAR MODO OSCURO
+        const interruptor = document.getElementById("interruptorTema");
+
+        if (localStorage.getItem("tema") === "oscuro") {
+            document.body.classList.add("tema-oscuro");
+            interruptor.checked = true;
+        }
+
+        interruptor.addEventListener("change", () => {
+            if (interruptor.checked) {
+                document.body.classList.add("tema-oscuro");
+                localStorage.setItem("tema", "oscuro");
+            } else {
+                document.body.classList.remove("tema-oscuro");
+                localStorage.setItem("tema", "claro");
+            }
+        });
+      });
+  </script>
+
+  <!-- CONTENIDO -->
+  <main class="inv-contenedor">
+    <h1 class="inv-titulo">Inventario </h1>
+
+    <div class="inv-tabla-card">
+      <table class="inv-tabla">
+        <thead>
+          <tr>
+            <th>Artículo</th>
+            <th>Descripción</th>
+            <th>Disponible</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyInventario"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script>
+    // === INVENTARIO DE EJEMPLO ===
+    const inventarioDocente = [
+      { articulo: "Notebook", descripcion: "Portátil HP con Office instalado", disponible: 7 },
+      { articulo: "Proyector", descripcion: "Proyector Epson 1080p", disponible: 3 },
+      { articulo: "Cámara", descripcion: "Cámara Canon EOS", disponible: 2 },
+      { articulo: "Micrófono", descripcion: "Micrófono condensador USB", disponible: 6 },
+      { articulo: "Tablet", descripcion: "Tablet Samsung Galaxy Tab A", disponible: 4 }
+    ];
+
+    // RENDER
+    const tbody = document.getElementById("tbodyInventario");
+    inventarioDocente.forEach(item => {
+      const fila = `
+        <tr>
+          <td>${item.articulo}</td>
+          <td>${item.descripcion}</td>
+          <td class="stock">${item.disponible}</td>
+        </tr>
+      `;
+      tbody.innerHTML += fila;
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIIT - Gestión de Artículos</title>
+
+    <link rel="stylesheet" href="../../css/NavBar.css">
+    <link rel="stylesheet" href="../../css/NavBarCoordinador.css">
+    <link rel="stylesheet" href="../../css/GestionArticulos.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body data-vista="coordinador">
+
+    <!-- NAVBAR -->
+    <header id="navbar"></header>
+
+    <script>
+        fetch("./NavBarCoordinador.html")
+            .then(r => r.text())
+            .then(html => {
+                document.getElementById("navbar").innerHTML = html;
+
+                const interruptor = document.getElementById("interruptorTema");
+
+                if (localStorage.getItem("tema") === "oscuro") {
+                    document.body.classList.add("tema-oscuro");
+                    interruptor.checked = true;
+                }
+
+                interruptor.addEventListener("change", () => {
+                    if (interruptor.checked) {
+                        document.body.classList.add("tema-oscuro");
+                        localStorage.setItem("tema", "oscuro");
+                    } else {
+                        document.body.classList.remove("tema-oscuro");
+                        localStorage.setItem("tema", "claro");
+                    }
+                });
+            });
+    </script>
+
+    <!-- ============================================================
+         CONTENEDOR PRINCIPAL
+    ============================================================= -->
+    <main class="contenedor-gestion">
+
+        <h1 class="titulo-gestion">Gestión de Artículos</h1>
+
+        <!-- TABLA PRINCIPAL -->
+        <div class="card-tabla">
+            <table class="tabla-articulos">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Artículo</th>
+                        <th>Categoría</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaGestion"></tbody>
+            </table>
+        </div>
+
+        <!-- TARJETA — PRÉSTAMOS -->
+        <div class="card-secundaria">
+            <h2 class="subtitulo-tarjeta">Préstamos</h2>
+            <div id="listaSolicitudes" class="contenedor-items"></div>
+        </div>
+
+        <!-- TARJETA — SOLICITUDES DE USUARIOS -->
+        <div class="card-secundaria">
+            <h2 class="subtitulo-tarjeta">Solicitudes hechas por usuarios</h2>
+            <div id="listaSolicitudesUsuarios" class="contenedor-items"></div>
+        </div>
+
+        <!-- TARJETA — HISTORIAL -->
+        <div class="card-secundaria">
+            <h2 class="subtitulo-tarjeta">Historial de préstamos</h2>
+            <div id="listaDevoluciones" class="contenedor-items"></div>
+        </div>
+
+        <!-- ============================================================
+             MODAL — CONFIRMAR PRÉSTAMO DE UNA SOLICITUD
+        ============================================================= -->
+        <div class="modal" id="modalPrestarSolicitudUsuario">
+            <div class="modal-contenido">
+                <h3>Confirmar préstamo</h3>
+
+                <p class="modal-articulo">
+                    <strong>Artículo:</strong>
+                    <span id="solUserArticulo"></span>
+                </p>
+
+                <p>
+                    <strong>Solicitante:</strong>
+                    <span id="solUserNombre"></span>
+                </p>
+
+                <p>
+                    <strong>RUT:</strong>
+                    <span id="solUserRut"></span>
+                </p>
+
+                <p>
+                    <strong>Fecha solicitud:</strong>
+                    <span id="solUserFecha"></span>
+                </p>
+
+                <p>
+                    <strong>Observación:</strong>
+                    <span id="solUserObs"></span>
+                </p>
+
+                <p class="texto-secundario">
+                    Verifique que el solicitante coincida con el usuario presente antes de entregar el artículo.
+                </p>
+
+                <div class="modal-botones">
+                    <button id="btnConfirmarPrestamoUsuario" class="btn-primario">Registrar préstamo</button>
+                    <button class="btn-secundario" onclick="cerrarModalSolicitudUsuario()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ============================================================
+         MODAL — REGISTRAR PRÉSTAMO MANUAL
+    ============================================================= -->
+    <div class="modal" id="modalPrestamo">
+        <div class="modal-contenido">
+            <h3>Registrar préstamo</h3>
+            <p id="nombrePrestamo" class="modal-articulo"></p>
+
+            <label>Nombre solicitante</label>
+            <input type="text" id="solicitante">
+
+            <label>RUT solicitante</label>
+            <input type="text" id="rutSolicitante">
+
+            <label>Observación (opcional)</label>
+            <textarea id="obsPrestamo"></textarea>
+
+            <div class="modal-botones">
+                <button id="confirmarPrestamo" class="btn-primario">Confirmar</button>
+                <button onclick="cerrarModalPrestamo()" class="btn-secundario">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         MODAL — DEVOLUCIÓN
+    ============================================================= -->
+    <div class="modal" id="modalDevolucion">
+        <div class="modal-contenido">
+            <h3>Registrar devolución</h3>
+
+            <p class="modal-articulo" id="nombreDevolucion"></p>
+
+            <label>Estado al devolver</label>
+            <select id="estadoDevolucion" onchange="mostrarDetalleDaño()">
+                <option value="disponible">Buen estado</option>
+                <option value="dañado">Dañado</option>
+            </select>
+
+            <div id="detalleDaño" style="display:none;">
+                <label>Descripción del daño</label>
+                <textarea id="descripcionDaño"></textarea>
+            </div>
+
+            <div class="modal-botones">
+                <button id="confirmarDevolucion" class="btn-primario">Guardar</button>
+                <button onclick="cerrarModalDevolucion()" class="btn-secundario">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS PRINCIPAL -->
+    <script src="../../js/GestionArticulo.js"></script>
+
+    <script>
+        function mostrarDetalleDaño() {
+            const select = document.getElementById("estadoDevolucion").value;
+            document.getElementById("detalleDaño").style.display = select === "dañado" ? "block" : "none";
+        }
+    </script>
+
+</body>
+</html>

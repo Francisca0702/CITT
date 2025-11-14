@@ -1,0 +1,306 @@
+/* =========================================================
+   PALETA - COLORES INSTITUCIONALES CIIT
+========================================================= */
+
+:root {
+    --primario: #307FE2;
+    --primario-oscuro: #0A2A43;
+    --secundario: #8BB8E8;
+    --fondo: #ffffff;
+    --texto: #1E1E1E;
+    --gris: #E5E7EB;
+    --gris-claro: #F4F6FA;
+    --acento: #FFB800;
+    --sombra: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+body.tema-oscuro {
+    --fondo: #111827;
+    --texto: #f3f4f6;
+    --gris: #1f2937;
+    --gris-claro: #1f2937;
+    --sombra: 0 8px 25px rgba(0,0,0,0.30);
+}
+
+/* =========================================================
+   CONTENEDOR GENERAL
+========================================================= */
+
+.contenedor-gestion {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+}
+
+.titulo-gestion {
+    font-size: 2rem;
+    color: var(--primario);
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+/* =========================================================
+   TABLA PRINCIPAL
+========================================================= */
+
+.card-tabla {
+    background: var(--fondo);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--sombra);
+    margin-bottom: 3rem;
+}
+
+.tabla-articulos {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.tabla-articulos thead {
+    background: var(--primario);
+    color: white;
+}
+
+.tabla-articulos th,
+.tabla-articulos td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.tabla-articulos thead th {
+    color: #ffffff !important;
+    background: var(--primario);
+    padding: 1rem;
+    font-size: 1rem;
+    letter-spacing: .3px;
+}
+
+.tabla-articulos tbody tr:hover {
+    background: rgba(48,127,226,0.08);
+    transition: 0.2s ease;
+}
+
+.estado-disponible {
+    color: rgb(18, 148, 18);
+    font-weight: 600;
+}
+
+.estado-dañado {
+    color: rgb(207, 30, 30);
+    font-weight: 600;
+}
+
+.btn-tabla {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    background: var(--primario);
+    color: white;
+    transition: .2s;
+}
+
+.btn-tabla:hover {
+    background: #1f5fb8;
+}
+
+/* =========================================================
+   TARJETAS SECUNDARIAS (Solicitudes / Devoluciones)
+========================================================= */
+
+.card-secundaria {
+    background: var(--fondo);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--sombra);
+    margin-bottom: 2.5rem;
+}
+
+.subtitulo-tarjeta {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primario);
+    margin-bottom: 1.3rem;
+}
+
+.contenedor-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* TARJETITA */
+.item-solicitud {
+    background: var(--gris-claro);
+    padding: 1.2rem 1.4rem;
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--texto);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.item-solicitud span {
+    font-weight: 600;
+}
+
+.item-solicitud small {
+    font-size: 0.82rem;
+    opacity: 0.8;
+}
+
+.btn-accion {
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background: var(--primario);
+    transition: .2s ease;
+}
+
+.btn-accion:hover {
+    background: #1f5fb8;
+}
+
+/* =========================================================
+   MODALES
+========================================================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    z-index: 3000;
+    animation: fadeIn .25s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-contenido {
+    background: var(--fondo);
+    padding: 2rem;
+    width: 95%;
+    max-width: 450px;
+    border-radius: 18px;
+    box-shadow: var(--sombra);
+    animation: slideUp .28s ease;
+    color: var(--texto) !important;
+    font-weight: 600;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0;}
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-contenido h3 {
+    margin-top: 0;
+    color: var(--primario);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+/* 🔥 FIX: antes tenía opacity 0.8 → ocultaba textos */
+.modal-articulo {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--texto) !important;
+    opacity: 1 !important;
+}
+
+.modal-contenido label {
+    display: block;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.modal-contenido input,
+.modal-contenido select,
+.modal-contenido textarea {
+    width: 100%;
+    padding: 0.9rem;
+    border-radius: 10px;
+    border: 1px solid #cfd3da;
+    background: var(--fondo);
+    font-size: 1rem;
+    color: var(--texto);
+    margin-top: 0.3rem;
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.modal-botones {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.8rem;
+}
+
+.btn-primario {
+    background: var(--primario);
+    color: white;
+    font-weight: 600;
+    padding: 0.9rem 1.3rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.btn-primario:hover {
+    background: #1f5fb8;
+}
+
+.btn-secundario {
+    background: transparent;
+    border: 2px solid #b5c8dd;
+    color: #59728f;
+    padding: 0.9rem 1.3rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: .2s ease;
+}
+
+.btn-secundario:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+/* 🔥 FIX GLOBAL → asegura que SÍ se vean los spans/strong */
+.modal-contenido p,
+.modal-contenido strong,
+.modal-contenido span {
+    color: var(--texto) !important;
+    opacity: 1 !important;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+    .modal-contenido {
+        max-width: 95%;
+    }
+
+    .item-solicitud {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

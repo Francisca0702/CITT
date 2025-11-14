@@ -1,37 +1,40 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CIIT</title>
-    <link rel="stylesheet" href="../css/NavBar.css">
+    <title>CITT</title>
+    <link rel="stylesheet" href="../../css/NavBarDocente.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
-<body data-vista="espacios">
-    <header class="barra-superior">
-        <div class="logo">
-            <span class="logo-simbolo">CIIT</span>
-            <span class="logo-texto">Area de informatica</span>
-        </div>
-        <nav class="menu-principal">
-            <a href="../views/home.html">Inicio</a>
-            <a href="../views/perfil.html">Perfil</a>
-            <a href="../views/articulos.html">Artículos</a>
-            <a href="../views/calendario.html">Calendario</a>
-        </nav>
-        <div class="acciones-header">
-            <label class="interruptor-tema">
-                <input type="checkbox" id="interruptorTema">
-                <span class="slider"></span>
-            </label>
-            <span id="nombreUsuarioActivo" class="usuario-activo"></span>
-        </div>
-    </header>
 
+<header class="barra-superior">
+    <div class="logo">
+        <span class="logo-simbolo">CIIT</span>
+        <span class="logo-texto">Area de informatica</span>
+    </div>
 
-    <script>
+    <nav class="menu-principal">
+        <a href="HomeDocente.html">Inicio</a>
+        <a href="PerfilDocente.html">Perfil</a>
+        <a href="GestionArticulosDocente.html">Artículos</a>
+        <a href="GestionEspacioDocente.html">Espacios</a>
+        <a href="CalendarioDocente.html">Calendario</a>
+        <a href="InventarioDocente.html">Inventario</a>
+    </nav>
+
+    <div class="acciones-header">
+        <label class="interruptor-tema">
+            <input type="checkbox" id="interruptorTema">
+            <span class="slider"></span>
+        </label>
+        <span id="nombreUsuarioActivo" class="usuario-activo"></span>
+    </div>
+</header>
+
+<script>
     // Detecta el checkbox del modo oscuro
     const interruptorTema = document.getElementById("interruptorTema");
 

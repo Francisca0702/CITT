@@ -1,0 +1,141 @@
+/* =========================================================
+   PALETA DE COLORES - DOCENTE (TONOS AZULES PROFESIONALES)
+========================================================= */
+
+:root {
+    --docente-primario: #1E3A8A;       /* Azul profundo */
+    --docente-primario-oscuro: #162B66; /* Azul más oscuro */
+    --docente-secundario: #3B82F6;     /* Azul acento */
+    --docente-claro: #E0ECFF;          /* Fondo azul muy suave */
+    --texto: #1E1E1E;
+    --blanco: #ffffff;
+
+    --sombra: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* =======================
+   MODO OSCURO DOCENTE
+======================= */
+body.tema-oscuro {
+    --docente-primario: #0F172A;
+    --docente-primario-oscuro: #0A1120;
+    --docente-secundario: #60A5FA;
+    --docente-claro: #111827;
+    --texto: #F1F5F9;
+    --sombra: 0 4px 18px rgba(0,0,0,0.45);
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
+.barra-superior {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--docente-primario);
+    padding: 12px 28px;
+    box-shadow: var(--sombra);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    color: var(--blanco);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* LOGO */
+.logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.logo-simbolo {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--blanco);
+}
+
+.logo-texto {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--docente-secundario);
+}
+
+/* MENU PRINCIPAL */
+.menu-principal {
+    display: flex;
+    gap: 22px;
+}
+
+.menu-principal a {
+    text-decoration: none;
+    color: var(--blanco);
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: 0.25s;
+}
+
+.menu-principal a:hover {
+    background: var(--docente-secundario);
+    color: var(--blanco);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+}
+
+/* ACCIONES (tema + usuario) */
+.acciones-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Nombre usuario */
+.usuario-activo {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--blanco);
+}
+
+/* Interruptor modo oscuro */
+.interruptor-tema {
+    position: relative;
+    width: 46px;
+    height: 24px;
+    display: inline-block;
+}
+
+.interruptor-tema input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--docente-primario-oscuro);
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background: var(--blanco);
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+input:checked + .slider {
+    background: var(--docente-secundario);
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
+}

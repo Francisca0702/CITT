@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CITT - Historial de Préstamos</title>
+
+<!-- Estilos del Navbar -->
+<link rel="stylesheet" href="../../css/NavBar.css">
+<link rel="stylesheet" href="../../css/NavBarCoordinador.css">
+
+<!-- Fuente Poppins -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body data-vista="coordinador">
+
+    <!-- NAVBAR -->
+    <header id="navbar"></header>
+
+    <script>
+    fetch("./NavBarCoordinador.html")
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById("navbar").innerHTML = html;
+
+            // ACTIVAR MODO OSCURO
+            const interruptorTema = document.getElementById("interruptorTema");
+
+            if (localStorage.getItem("tema") === "oscuro") {
+                document.body.classList.add("tema-oscuro");
+                interruptorTema.checked = true;
+            }
+
+            interruptorTema.addEventListener("change", () => {
+                if (interruptorTema.checked) {
+                    document.body.classList.add("tema-oscuro");
+                    localStorage.setItem("tema", "oscuro");
+                } else {
+                    document.body.classList.remove("tema-oscuro");
+                    localStorage.setItem("tema", "claro");
+                }
+            });
+        });
+    </script>
+
+    <!-- CONTENIDO -->
+    <section class="contenedor-gestion" style="max-width: 1200px; margin: 3rem auto; padding: 2rem; background: white; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+        
+        <h2 style="color: var(--primario); margin-top: 0;">Historial de Préstamos</h2>
+
+        <table style="width:100%; border-collapse: collapse; margin-top: 1rem;">
+            <thead style="background: var(--primario); color:white;">
+                <tr>
+                    <th>Código</th>
+                    <th>Artículo</th>
+                    <th>Solicitante</th>
+                    <th>RUT</th>
+                    <th>Préstamo</th>
+                    <th>Devolución</th>
+                    <th>Estado Final</th>
+                </tr>
+            </thead>
+            <tbody id="tablaHistorial"></tbody>
+        </table>
+
+    </section>
+
+<script src="../js/Historial.js"></script>
+</body>
+</html>

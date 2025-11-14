@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendario y Reservas CITT</title>
+  
+  <!-- Fuente -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../../css/NavbarAlumnoayudante.css">
+
+  <!-- Script (cargado al final, pero lo ponemos aquí para visibilidad) -->
+  <script src="../../js/AlumnoAyudantevista.js" defer></script>
+</head>
+
+<body>
+  <header class="barra-superior">
+    <div class="logo">
+        <span class="logo-simbolo">CITT</span>
+        <span class="logo-texto">Área de informática</span>
+    </div>
+    <nav class="menu-principal">
+      <a href="../HomeGeneral.html">Inicio</a>
+        
+        
+        <a href="../Alumno/PerfilAlumno.html">Perfil</a>
+        
+        <a href="../Alumno/ReservaEspacio.html">Reserva espacios</a>
+
+        <a href="../Alumno/ReservArticulo.html">Reserva artículos</a>
+        
+        <a href="../Alumno/CalendarioAlumno.html" class="activo">Calendario</a> </nav>
+
+       
+        
+    <div class="acciones-header">
+        <label class="interruptor-tema">
+            <input type="checkbox" id="interruptorTema">
+            <span class="slider"></span>
+        </label>
+        <span id="nombreUsuarioActivo" class="usuario-activo"></span>
+    </div>
+</header>
+
+  <!-- Contenido principal -->
+  <main class="contenedor-principal"> 
+    <h1>Calendario de espacios y artículos</h1> 
+    
+    <section class="card"> 
+      <h2>Calendario reserva espacios</h2> 
+      
+      <div class="modo-vista">
+        <button id="btnDiario" class="activo">Vista diaria</button>
+        <button id="btnSemanal">Vista semanal</button>
+      </div>
+
+      <div class="selector-fecha">
+        <label for="fechaCalendario">Selecciona una fecha:</label>
+        <input type="date" id="fechaCalendario">
+      </div>
+
+      <div id="vistaDiaria" class="vista visible">
+        <h2 id="tituloDia">Disponibilidad diaria</h2>
+        <div id="tablaDia" class="tabla-dia"></div>
+      </div>
+
+      <div id="vistaSemanal" class="vista">
+        <div id="tablaSemana" class="tabla-semana">
+          <p>Vista semanal en construcción.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card"> 
+      <h2>Objetos reservados (Próximos)</h2>
+      <table class="tabla-inventario">
+        <thead>
+          <tr>
+            <th>Artículo</th>
+            <th>Reservado por</th>
+            <th>Fecha de Retiro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Proyector Epson PowerLite E24</td>
+            <td>mrojas@duocuc.cl</td>
+            <td>10/11/2025 - 10:00</td>
+          </tr>
+          <tr>
+            <td>Micrófono Solapa Lavalier Linkon</td>
+            <td>ca.valenzuelam@duocuc.cl</td>
+            <td>05/11/2025 - 12:00</td>
+          </tr>
+          <tr>
+            <td>Notebook Acer AL15</td>
+            <td>docente.area@profesorduocuc.cl</td>
+            <td>29/11/2025 - 09:00</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

@@ -5,39 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CIIT - Panel Alumno</title>
 
-    <link rel="stylesheet" href="../css/NavBar.css">
+    
+    <link rel="stylesheet" href="../../css/NavBar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 </head>
-<body data-vista="dashboard">
+<body data-vista="reserva">>
 
-    <!-- NAVBAR -->
-    <header class="barra-superior">
-        <div class="logo">
-            <span class="logo-simbolo">CIIT</span>
-            <span class="logo-texto">Área de Informática</span>
-        </div>
+  <!-- NAVBAR externo -->
+    <header id="navbar"></header>
 
-        <nav class="menu-principal">
-            <a href="dashboardAlumno.html" class="activo">Inicio</a>
-            <a href="perfil.html">Perfil</a>
-            <a href="reservaEspacios.html">Reserva espacios</a>
-            <a href="reservaArticulos.html">Reserva artículos</a>
-            <a href="calendario.html">Articulos</a>
-        </nav>
-
-        <div class="acciones-header">
-            <label class="interruptor-tema">
-                <input type="checkbox" id="interruptorTema">
-                <span class="slider"></span>
-            </label>
-        </div>
-    </header>
-
-
-
+    <script>
+    fetch("../Alumno/NavBarAlumno.html")
+        .then(response => response.text())
+        .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+        });
+    </script>
 
     <!-- CONTENIDO -->
     <main class="dashboard">

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CITT - Gestión de Artículos</title>
+
+  <!-- Estilos del docente -->
+   <link rel="stylesheet" href="../../css/NavBar.css">
+  <link rel="stylesheet" href="../../css/NavBarDocente.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body data-vista="articulos-docente">
+
+  <!-- NAVBAR dinámico -->
+  <header id="navbar"></header>
+
+  <script>
+    fetch("../Docente/NavBarDocente.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar").innerHTML = html;
+
+        // ACTIVAR MODO OSCURO
+        const interruptor = document.getElementById("interruptorTema");
+
+        if (localStorage.getItem("tema") === "oscuro") {
+          document.body.classList.add("tema-oscuro");
+          interruptor.checked = true;
+        }
+
+        interruptor.addEventListener("change", () => {
+          if (interruptor.checked) {
+            document.body.classList.add("tema-oscuro");
+            localStorage.setItem("tema", "oscuro");
+          } else {
+            document.body.classList.remove("tema-oscuro");
+            localStorage.setItem("tema", "claro");
+          }
+        });
+      });
+  </script>
+
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="doc-layout">
+
+    <h1 class="doc-titulo">Gestión de Artículos</h1>
+
+    <div class="doc-card tabla-card">
+      <table class="tabla-articulos">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Artículo</th>
+            <th>Categoría</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody id="tablaGestion"></tbody>
+      </table>
+    </div>
+
+  </main>
+
+
+  <!-- MODAL: PRESTAMO -->
+  <div class="doc-modal" id="modalPrestamo">
+    <div class="doc-modal-contenido">
+      <h3>Registrar préstamo</h3>
+      <p id="nombrePrestamo"></p>
+
+      <label>Nombre solicitante</label>
+      <input type="text" id="solicitante">
+
+      <label>RUT solicitante</label>
+      <input type="text" id="rutSolicitante">
+
+      <label>Observación (opcional)</label>
+      <textarea id="obsPrestamo"></textarea>
+
+      <div class="modal-botones">
+        <button id="confirmarPrestamo" class="doc-btn">Confirmar</button>
+        <button onclick="cerrarModalPrestamo()" class="doc-btn-cancelar">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL: DEVOLUCIÓN -->
+  <div class="doc-modal" id="modalDevolucion">
+    <div class="doc-modal-contenido">
+      <h3>Registrar devolución</h3>
+      <p id="nombreDevolucion"></p>
+
+      <label>Estado al devolver</label>
+      <select id="estadoDevolucion">
+        <option value="disponible">Buen estado</option>
+        <option value="dañado">Dañado</option>
+      </select>
+
+      <div id="detalleDaño" class="campo-dano">
+        <label>Descripción del daño</label>
+        <textarea id="descripcionDaño"></textarea>
+      </div>
+
+      <div class="modal-botones">
+        <button id="confirmarDevolucion" class="doc-btn">Guardar</button>
+        <button onclick="cerrarModalDevolucion()" class="doc-btn-cancelar">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../../js/GestionArticulosDocente.js"></script>
+
+</body>
+</html>

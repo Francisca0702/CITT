@@ -1,0 +1,74 @@
+/* =======================================================
+   NAVBAR ESPECIAL PARA EL ROL COORDINADOR
+   Se activa cuando la página tiene: <body data-vista="coordinador">
+======================================================= */
+
+/* Barra superior */
+body[data-vista="coordinador"] .barra-superior {
+    background: #0A2A43;
+    color: #ffffff;
+}
+
+/* Logo */
+body[data-vista="coordinador"] .logo-simbolo {
+    color: #ffffff;
+}
+
+body[data-vista="coordinador"] .logo-texto {
+    color: #cfd8e3;
+}
+
+/* Links del menú */
+body[data-vista="coordinador"] .menu-principal a {
+    color: #dbeafe;
+    font-weight: 500;
+    padding: 0.5rem 0.8rem;      /* NUEVO */
+    border-radius: 8px;          /* NUEVO */
+}
+
+body[data-vista="coordinador"] .menu-principal a:hover {
+    background: #123A5A;
+    color: #ffffff;
+}
+
+/* Link activo */
+body[data-vista="coordinador"] .menu-principal a.activo,
+body[data-vista="coordinador"] .menu-principal a.seleccionado {
+    background: #0F4C81;
+    color: #ffffff;
+}
+
+/* Usuario activo */
+body[data-vista="coordinador"] .usuario-activo {
+    color: #e5efff;
+}
+
+/* Interruptor modo oscuro */
+body[data-vista="coordinador"] .slider {
+    background-color: #375a7f;
+}
+
+body[data-vista="coordinador"] input:checked + .slider {
+    background-color: #1b74c4;
+}
+
+/* ============================
+   COMPATIBILIDAD MODO OSCURO
+============================ */
+body.tema-oscuro[data-vista="coordinador"] .barra-superior {
+    background: #0A2A43 !important;
+}
+
+body.tema-oscuro[data-vista="coordinador"] .menu-principal a {
+    color: #dbeafe !important;
+}
+
+body.tema-oscuro[data-vista="coordinador"] .menu-principal a:hover {
+    background: #123A5A !important;
+    color: #ffffff !important;
+}
+
+body.tema-oscuro[data-vista="coordinador"] .logo-simbolo,
+body.tema-oscuro[data-vista="coordinador"] .logo-texto {
+    color: #ffffff !important;
+}

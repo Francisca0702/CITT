@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CITT · Reserva de Artículos</title>
+  <link rel="stylesheet" href="../../css/ReservaArticulosAlumno.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- NAVBAR externo -->
+
+    <header id="navbar"></header>
+
+    <script>
+    fetch("../Alumno/NavBarAlumno.html")
+        .then(response => response.text())
+        .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+        });
+    </script>
+
+    
+  <main class="contenedor-reserva-articulos">
+    <h1>Reserva de artículos del CITT</h1>
+
+    <!-- STOCK DISPONIBLE -->
+        <section class="stock-articulos">
+          <h2> Stock disponible</h2>
+          <table id="tablaStock">
+            <thead>
+              <tr>
+                <th>Artículo</th>
+                <th>Descripción</th>
+                <th>Disponible</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+          <!-- Se llena con JS -->
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="separador">
+
+    <!-- FORMULARIO -->
+     
+          <form id="formReservaArticulos">
+            <h2>Solicitud de reserva</h2>
+
+            <div class="campo">
+        <label for="rut">Ingresa tu RUT</label>
+        <input
+          type="text"
+          id="rut"
+          placeholder="Ej: 12345678-9"
+          maxlength="10"
+          required
+        >
+      </div>
+
+      <div class="campo">
+        <label for="articulo">Selecciona un artículo</label>
+        <select id="articulo" required></select>
+      </div>
+
+      <div class="campo">
+        <label for="cantidad">Cantidad a reservar</label>
+        <input type="number" id="cantidad" min="1" required>
+      </div>
+
+      <div class="campo">
+        <label for="fecha">Fecha de uso:</label>
+        <input type="date" id="fecha" required>
+      </div>
+
+      <div class="campo">
+        <label for="hora">Horario:</label>
+        <select id="hora" required>
+          <option value="">Seleccione horario</option>
+          <option>08:00 - 09:00</option>
+          <option>09:00 - 10:00</option>
+          <option>10:00 - 11:00</option>
+          <option>11:00 - 12:00</option>
+          <option>12:00 - 13:00</option>
+          <option>13:00 - 14:00</option>
+          <option>14:00 - 15:00</option>
+          <option>15:00 - 16:00</option>
+          <option>16:00 - 17:00</option>
+          <option>17:00 - 18:00</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="motivo">Motivo de uso:</label>
+        <textarea id="motivo" rows="3" placeholder="Ej: práctica, exposición, Estudio..." required></textarea>
+      </div>
+  <div id="mensajeError" class="mensaje-error"></div>    
+
+      <div class="acciones">
+        <button type="submit" class="btn-primario">Reservar</button>
+        <button type="reset" class="btn-secundario">Cancelar</button>
+      </div>
+    </form>
+
+    <!-- POPUP DE ÉXITO -->
+    <div id="popupExito" class="popup-oculto">
+      <div class="popup-contenido">
+        <h3> Reserva registrada</h3>
+        <p>Tu reserva fue registrada correctamente.</p>
+        <button id="cerrarPopup" class="btn-primario">Cerrar</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="../../js/ReservaArticulosAlumno.js"></script>
+</body>
+</html>

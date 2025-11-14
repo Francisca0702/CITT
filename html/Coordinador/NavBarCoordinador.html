@@ -1,0 +1,43 @@
+<nav class="barra-superior">
+    <div class="logo">
+        <span class="logo-simbolo">CIIT</span>
+        <span class="logo-texto">Área de Informática</span>
+    </div>
+
+    <div class="menu-principal">
+        <a href="HomeCoordinador.html" data-link="home">Inicio</a>
+        <a href="PerfilCoordinador.html" data-link="perfil">Perfil</a>
+        <a href="InventarioArticulo.html" data-link="inventario">Inventario</a>
+        <a href="GestionReservasCoordinador.html" data-link="reservas">Gestión de reservas</a>
+        <a href="EditarInformacionCoordinador.html" data-link="usuarios">Gestión de usuarios</a>
+        <a href="GestionArticulo.html" data-link="articulos">Gestión de Artículos</a>
+        <a href="CalendarioCoordinador.html" data-link="calendario">Calendario</a>
+    </div>
+
+    <div class="acciones-header">
+        <label class="interruptor-tema">
+            <input type="checkbox" id="interruptorTema">
+            <span class="slider"></span>
+        </label>
+        <span id="nombreUsuarioActivo" class="usuario-activo"></span>
+    </div>
+</nav>
+
+<script>
+    const interruptorTema = document.getElementById("interruptorTema");
+
+    if (localStorage.getItem("tema") === "oscuro") {
+        document.body.classList.add("tema-oscuro");
+        interruptorTema.checked = true;
+    }
+
+    interruptorTema.addEventListener("change", () => {
+        if (interruptorTema.checked) {
+            document.body.classList.add("tema-oscuro");
+            localStorage.setItem("tema", "oscuro");
+        } else {
+            document.body.classList.remove("tema-oscuro");
+            localStorage.setItem("tema", "claro");
+        }
+    });
+</script>
