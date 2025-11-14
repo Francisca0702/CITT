@@ -1,57 +1,3 @@
-/* ============================================
-   SCRIPT 1: CARGA DEL NAVBAR (CON CORRECCIÓN)
- ============================================
-*/
-fetch("../Alumno/NavBarAlumno.html") // ¡Asegúrate que esta ruta es correcta!
-    .then(response => response.text())
-    .then(data => {
-        // --- INICIO: Corrección del espacio en blanco ---
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(data, "text/html");
-        
-        // Encontrar el elemento .barra-superior
-        const barraSuperior = doc.querySelector(".barra-superior");
-        
-        const navbarHeader = document.getElementById("navbar");
-
-        if (barraSuperior) {
-            // Limpiar el header y añadir SOLO la barra
-            navbarHeader.innerHTML = ''; // Limpiar
-            navbarHeader.appendChild(barraSuperior); // Añadir solo el <header>
-        } else {
-            // Si falla, usar el método anterior
-            navbarHeader.innerHTML = data;
-        }
-        // --- FIN: Corrección del espacio en blanco ---
-
-        // --- INICIO: Script del Modo Oscuro ---
-        // (Se ejecuta después de cargar el navbar)
-        const interruptorTema = document.getElementById("interruptorTema");
-        
-        // 1. Aplicar tema guardado al cargar la página
-        if (localStorage.getItem("tema") === "oscuro") {
-            document.body.classList.add("tema-oscuro");
-            if (interruptorTema) interruptorTema.checked = true;
-        }
-
-        // 2. Escuchar cambios en el interruptor
-        if (interruptorTema) {
-            interruptorTema.addEventListener("change", () => {
-                if (interruptorTema.checked) {
-                    document.body.classList.add("tema-oscuro");
-                    localStorage.setItem("tema", "oscuro");
-                } else {
-                    document.body.classList.remove("tema-oscuro");
-                    localStorage.setItem("tema", "claro");
-                }
-            });
-        }
-        // --- FIN: Script del Modo Oscuro ---
-    })
-    .catch(error => {
-        console.error("Error al cargar el Navbar:", error);
-        document.getElementById("navbar").innerHTML = "<p style='color:red; text-align:center;'>Error al cargar la barra de navegación. Verifica la ruta.</p>";
-    });
 
 
 /* ============================================
@@ -88,7 +34,26 @@ document.addEventListener("DOMContentLoaded", () => {
         { hora: "21:00 - 22:00", estado: "libre" },
         { hora: "22:00 - 23:00", estado: "libre" }
     ];
+    const interruptorTema = document.getElementById("interruptorTema");
 
+    // 1. Aplicar tema guardado al cargar la página
+    if (localStorage.getItem("tema") === "oscuro") {
+        document.body.classList.add("tema-oscuro");
+        if (interruptorTema) interruptorTema.checked = true;
+    }
+    
+    // 2. Escuchar cambios en el interruptor
+    if (interruptorTema) {
+        interruptorTema.addEventListener("change", () => {
+            if (interruptorTema.checked) {
+                document.body.classList.add("tema-oscuro");
+                localStorage.setItem("tema", "oscuro");
+            } else {
+                document.body.classList.remove("tema-oscuro");
+                localStorage.setItem("tema", "claro");
+            }
+        });
+    }
     // --- 2. Función para renderizar los bloques del día ---
     function renderizarDia() {
         tablaDia.innerHTML = ""; // Limpiar vista anterior
