@@ -90,7 +90,7 @@ input:checked + .slider { background-color: var(--color-acento); }
 input:checked + .slider::before { transform: translateX(24px); }
 
 /* =========================================================
-   MODO OSCURO GLOBAL — ORDENADO Y OPTIMIZADO
+   MODO OSCURO GLOBAL 
 ========================================================= */
 
 body.tema-oscuro {
@@ -213,7 +213,7 @@ body.tema-oscuro section a {
 
 
 /* ========================
-   PERFIL ALUMNO (NUEVO LAYOUT)
+   PERFIL ALUMNO 
 ======================== */
 .perfil-layout {
     max-width: 1100px;
@@ -267,8 +267,7 @@ body.tema-oscuro .info-box,
 body.tema-oscuro .card-opcion { background: #1f2937; }
 
 /* --- Navbar solo para vistas admin --- */
-body[data-rol="admin"] .barra-superior {
-  background-color: #0b1f3a;          /* más oscuro, dentro de la paleta */
+body[data-rol="admin"] .barra-superior {         /* más oscuro, dentro de la paleta */
   color: var(--color-fondo);
 }
 body[data-rol="admin"] .menu-principal a { color: var(--color-fondo); }
@@ -292,9 +291,6 @@ body[data-rol="admin"].tema-oscuro .barra-superior {
 
 
 
-
-
-/*Reserva de espacios Alumno*/
 
 /* ===== RESERVA DE ESPACIOS ===== */
 body {
@@ -710,3 +706,713 @@ body[data-vista="reserva"] {
   background: linear-gradient(to top, rgba(48,127,226,0.28) 12%, #FFFFFF 88%);
   background-attachment: fixed;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============================
+          MODO OSCURO
+============================ */
+body.tema-oscuro[data-vista="perfil-docente"] {
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #111827 100%) !important;
+    color: #f9fafb;
+}
+
+body.tema-oscuro .doc-card {
+    background: #1f2937;
+    color: #f1f5f9;
+}
+
+body.tema-oscuro .doc-nombre {
+    color: #fff;
+}
+
+body.tema-oscuro .doc-card h3 {
+    color: #8BB8E8;
+}
+
+/* ============================
+           LAYOUT
+============================ */
+.doc-layout {
+    max-width: 1100px;
+    margin: auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.doc-foto-area {
+    margin-bottom: 3rem;
+}
+
+.doc-foto {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid var(--doc-blue-light);
+    box-shadow: var(--doc-shadow);
+}
+
+.doc-nombre {
+    margin-top: 1rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.doc-subtitulo {
+    margin-top: -4px;
+    color: #555;
+}
+
+/* TARJETAS */
+.doc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 2rem;
+}
+
+.doc-card {
+    background: var(--doc-white);
+    padding: 1.8rem;
+    border-radius: 16px;
+    box-shadow: var(--doc-shadow);
+    text-align: left;
+}
+
+.doc-card h3 {
+    margin-top: 0;
+    color: var(--doc-blue);
+}
+
+/* BOTÓN */
+.doc-acciones {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.doc-btn {
+    background: var(--doc-blue);
+    color: white;
+    padding: 0.9rem 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: var(--doc-shadow);
+    transition: 0.3s;
+}
+
+.doc-btn:hover {
+    background: #2368b8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   GESTIÓN DE ARTÍCULOS 
+========================================================= */
+
+
+/* =========================================================
+    Título
+========================================================= */
+.doc-titulo {
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #307FE2;
+    margin-bottom: 2.5rem;
+}
+
+/* =========================================================
+    Contenedor principal
+========================================================= */
+.doc-layout {
+    max-width: 1150px;
+    margin: auto;
+    padding: 20px;
+}
+
+.doc-card {
+    background: var(--doc-white);
+    padding: 2rem;
+    border-radius: 18px;
+    box-shadow: var(--doc-shadow);
+    margin-bottom: 2rem;
+}
+
+/* =========================================================
+   TABLA 
+========================================================= */
+.tabla-articulos {
+    width: 100%;
+    border-collapse: separate !important;
+    border-spacing: 0 12px;
+    
+}
+
+
+.tabla-articulos thead th {
+    padding: 16px 20px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.4px;
+    border-bottom: 3px solid #307FE2;
+    color: #307FE2;
+}
+
+/* =========================================================
+    Filas
+========================================================= */
+.tabla-articulos tbody tr {
+    background: var(--doc-white);
+    box-shadow: var(--doc-shadow);
+    border-radius: 12px;
+    transition: 0.25s ease-in-out;
+}
+
+.tabla-articulos tbody td {
+    padding: 18px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Hover */
+.tabla-articulos tbody tr:hover {
+    background: #eef4ff;
+    transform: scale(1.01);
+}
+
+/* =========================================================
+   Estados con colores
+========================================================= */
+.estado-disponible {
+    color: var(--estado-disponible);
+    font-weight: 700;
+}
+
+.estado-ocupado {
+    color: var(--estado-ocupado);
+    font-weight: 700;
+}
+
+.estado-danado {
+    color: var(--estado-danado);
+    font-weight: 700;
+}
+
+/* =========================================================
+   MODALES
+========================================================= */
+.doc-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(3px);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.doc-modal-contenido {
+    background: var(--doc-white);
+    width: min(500px, 90vw);
+    padding: 2rem;
+    border-radius: 18px;
+    box-shadow: var(--doc-shadow);
+    animation: modalEntrada .25s ease-out;
+}
+
+@keyframes modalEntrada {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.doc-modal-contenido input,
+.doc-modal-contenido textarea,
+.doc-modal-contenido select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #cfd3da;
+    margin-bottom: 1rem;
+    font-family: "Poppins";
+}
+
+/* Botones modal */
+.modal-botones {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.doc-btn {
+    background: var(--doc-blue);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.doc-btn:hover {
+    background: #153278;
+}
+
+.doc-btn-cancelar {
+    background: #bbbbbb;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.doc-btn-cancelar:hover {
+    background: #a3a3a3;
+}
+
+/* =========================================================
+    MODO OSCURO
+========================================================= */
+body.tema-oscuro[data-vista="articulos-docente"] {
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #111827 100%);
+    color: #f1f5f9;
+}
+
+body.tema-oscuro .doc-card {
+    background: #1f2937;
+    color: #f1f5f9;
+}
+
+body.tema-oscuro .tabla-articulos thead tr {
+    background: #1e3a8a;
+}
+
+body.tema-oscuro .tabla-articulos tbody tr {
+    background: #1f2937;
+}
+
+body.tema-oscuro .tabla-articulos tbody tr:hover {
+    background: #2b3447;
+}
+
+body.tema-oscuro .doc-modal-contenido {
+    background: #1f2937;
+    color: #f1f5f9;
+}
+
+body.tema-oscuro .doc-modal-contenido input,
+body.tema-oscuro .doc-modal-contenido textarea,
+body.tema-oscuro .doc-modal-contenido select {
+    background: #2b3445;
+    color: #fff;
+    border-color: #3b4455;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   INVENTARIO DOCENTE - ESTILO CITT (MATCH GESTIÓN ARTÍCULOS)
+========================================================= */
+
+/* PALETA GENERAL */
+:root {
+    --doc-blue: #307FE2;
+    --doc-blue-light: #8BB8E8;
+    --doc-white: #ffffff;
+    --doc-text: #1A1A1A;
+    --doc-shadow: 0 8px 25px rgba(0,0,0,0.10);
+
+    --inv-bg-light: #eef4ff;
+
+    /* Colores estados */
+    --estado-disponible: #27c281;
+    --estado-bajo: #ffb347;
+    --estado-critico: #e74c3c;
+}
+
+/* =========================================================
+        FONDO GENERAL
+========================================================= */
+
+body[data-vista="inventario-docente"] {
+    background: linear-gradient(180deg, #ffffff 0%, #eaf3ff 50%, #d0e5ff 100%);
+    font-family: "Poppins", sans-serif;
+    color: var(--doc-text);
+    padding-top: 100px;
+    margin: 0;
+}
+
+/* =========================================================
+        TÍTULO
+========================================================= */
+
+.inv-titulo {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--doc-blue);
+    margin-bottom: 2.5rem;
+}
+
+/* =========================================================
+        TARJETA GENERAL
+========================================================= */
+
+.inv-tabla-card {
+    max-width: 1100px;
+    margin: auto;
+    background: var(--doc-white);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: var(--doc-shadow);
+}
+
+/* =========================================================
+        TABLA
+========================================================= */
+
+.inv-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* ENCABEZADO */
+.inv-tabla thead th {
+    background: var(--doc-blue);
+    color: white;
+    padding: 16px;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.3px;
+}
+
+/* CELDAS */
+.inv-tabla td {
+    padding: 16px;
+    border-bottom: 1px solid #d6dcee;
+    font-size: 0.95rem;
+}
+
+/* HOVER */
+.inv-tabla tbody tr:hover {
+    background: var(--inv-bg-light);
+}
+
+/* =========================================================
+        BADGES DE STOCK
+========================================================= */
+
+.badge-stock {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    display: inline-block;
+    width: 80px;
+}
+
+/* Colores según cantidad */
+.badge-disponible {
+    background: var(--estado-disponible);
+}
+
+.badge-bajo {
+    background: var(--estado-bajo);
+    color: #333;
+}
+
+.badge-critico {
+    background: var(--estado-critico);
+}
+
+/* =========================================================
+        MODO OSCURO
+========================================================= */
+
+body.tema-oscuro[data-vista="inventario-docente"] {
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #111827 100%);
+    color: #f1f5f9;
+}
+
+body.tema-oscuro .inv-tabla-card {
+    background: #1f2937;
+}
+
+body.tema-oscuro .inv-tabla thead th {
+    background: #1e3a8a;
+}
+
+body.tema-oscuro .inv-tabla tbody tr:hover {
+    background: #2b3447;
+}
+
+body.tema-oscuro .badge-bajo {
+    color: #000;
+}
+

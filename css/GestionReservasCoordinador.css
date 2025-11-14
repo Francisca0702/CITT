@@ -1,0 +1,315 @@
+/* ---- Ajustes visuales de esta vista (sin tocar NavBar.css) ---- */
+.contenedor-pagina {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+.card {
+  background: var(--color-fondo);
+  border-radius: 16px;
+  box-shadow: var(--sombra-suave);
+  padding: 1rem;
+}
+
+/* etiquetas de horas un poco más pequeñas */
+#calendario-admin .fc .fc-timegrid-axis-cushion,
+#calendario-admin .fc .fc-timegrid-slot-label-cushion {
+  font-size: 0.85rem;
+}
+/* Calendario más pequeño y legible */
+#calendario-admin {
+  margin-bottom: 1.25rem;
+}
+/* Calendario más angosto y centrado */
+#calendario-admin {
+  max-width: 950px; /* ajusta a gusto: 900, 1000, lo que te acomode */
+  margin: 0 auto 1.25rem; /* centra horizontalmente + margen abajo */
+}
+
+#calendario-admin .fc .fc-toolbar-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+#calendario-admin .fc .fc-button {
+  border-radius: 10px;
+  padding: 0.25rem 0.6rem;
+}
+
+/* Forzar que el timeGrid NO use scroll interno */
+#calendario-admin .fc .fc-scroller {
+  overflow: visible !important;
+}
+
+/* Quitar el fondo amarillo chillón cuando la vista es SOLO por día */
+#calendario-admin .fc-timeGridDay-view .fc-day-today,
+#calendario-admin .fc-timeGridDay-view .fc-timegrid-col.fc-day-today,
+#calendario-admin
+  .fc-timeGridDay-view
+  .fc-timegrid-col.fc-day-today
+  .fc-timegrid-col-frame {
+  background: transparent !important;
+}
+
+/* Eventos clicables en el calendario: mostrar mano */
+#calendario-admin .fc .fc-event,
+#calendario-admin .fc .fc-timegrid-event,
+#calendario-admin .fc .fc-timegrid-event-harness {
+  cursor: pointer;
+}
+
+/* Lista de solicitudes */
+.solicitudes-wrap {
+  margin-top: 1.25rem;
+}
+
+/* Contenedor scroll horizontal si alguna columna se pasa */
+.tabla-solicitudes-wrap {
+  margin-top: 0.5rem;
+  border-radius: 14px;
+  box-shadow: var(--sombra-suave);
+  background: var(--color-fondo);
+  overflow: hidden;
+}
+
+/* Tabla “lista” */
+.tabla-solicitudes {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+/* Cabecera fija y con fondo */
+.tabla-solicitudes thead {
+  background: #f5f7fb;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.tabla-solicitudes th,
+.tabla-solicitudes td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-gris);
+  vertical-align: middle;
+}
+
+.tabla-solicitudes th {
+  font-weight: 600;
+  color: #4b5563;
+  white-space: nowrap;
+}
+
+.tabla-solicitudes tbody tr:hover {
+  background: rgba(48, 127, 226, 0.04);
+}
+
+/* Filas clicables en la tabla de solicitudes */
+.tabla-solicitudes tbody tr {
+  cursor: pointer;
+}
+
+/* Celda de acciones en fila */
+.acciones-solicitud {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+/* Ajuste de chips dentro de la tabla */
+.chip {
+  font-size: 0.78rem;
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--color-gris);
+  background: #fff;
+  display: inline-block;
+}
+
+/* Modo oscuro para la tabla */
+body.tema-oscuro .tabla-solicitudes-wrap {
+  background: #1f2937;
+}
+
+body.tema-oscuro .tabla-solicitudes thead {
+  background: #111827;
+}
+
+body.tema-oscuro .tabla-solicitudes th {
+  color: #e5e7eb;
+}
+
+body.tema-oscuro .tabla-solicitudes td {
+  border-bottom-color: rgba(249, 250, 251, 0.06);
+}
+
+.solicitud-titulo {
+  font-weight: 700;
+  color: var(--color-primario);
+  font-size: 1.05rem;
+}
+.chip {
+  font-size: 0.78rem;
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--color-gris);
+  background: #fff;
+}
+.chip.pendiente {
+  background: #fff9e6;
+  border-color: #ffe08a;
+  color: #916c00;
+}
+.chip.aceptada {
+  background: #e9f8ed;
+  border-color: #b9e5c4;
+  color: #196c3f;
+}
+.chip.rechazada {
+  background: #fdeaea;
+  border-color: #f5bcbc;
+  color: #8d2727;
+}
+
+.acciones-solicitud {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 0.55rem 0.8rem;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: var(--sombra-suave);
+}
+.btn-aceptar {
+  background: var(--color-primario);
+  color: #fff;
+}
+.btn-aceptar:hover {
+  background: #2368b8;
+}
+.btn-rechazar {
+  background: transparent;
+  color: var(--color-primario);
+  border: 1px solid var(--color-primario);
+}
+.btn-rechazar:hover {
+  background: var(--color-primario);
+  color: #fff;
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Título secciones */
+.seccion-titulo {
+  color: #0b1f3a;
+  font-weight: 700;
+  margin: 0.5rem 0 1rem;
+}
+
+/* Mejor contraste en modo oscuro del calendario */
+body.tema-oscuro #calendario-admin .fc {
+  --fc-neutral-bg-color: #152238; /* fondo de grilla */
+  --fc-page-bg-color: transparent;
+  --fc-border-color: rgba(255, 255, 255, 0.08);
+  --fc-today-bg-color: rgba(48, 127, 226, 0.15);
+}
+
+/* Dark mode hereda de NavBar.css: body.tema-oscuro ... */
+body.tema-oscuro .card,
+body.tema-oscuro .solicitud-card {
+  background: #1f2937;
+}
+body.tema-oscuro .solicitud-meta {
+  color: #d1d5db;
+}
+body.tema-oscuro .seccion-titulo {
+  color: #e5eefc;
+}
+
+/* ===== Modal de detalle de solicitud ===== */
+.overlay-detalle {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.overlay-detalle.activo {
+  display: flex;
+}
+
+.detalle-card {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+  max-width: 520px;
+  width: 90%;
+  padding: 1.5rem 1.75rem;
+  position: relative;
+}
+
+.detalle-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0b1f3a;
+}
+
+.detalle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+}
+
+.detalle-grid strong {
+  display: block;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.detalle-nota {
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  color: #4b5563;
+}
+
+.detalle-cerrar {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  border: none;
+  background: transparent;
+  font-size: 1.4rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Modo oscuro para el modal */
+body.tema-oscuro .detalle-card {
+  background: #1f2937;
+  color: #e5e7eb;
+}
+
+body.tema-oscuro .detalle-card h3 {
+  color: #e5eefc;
+}
+
+body.tema-oscuro .detalle-grid strong {
+  color: #e5e7eb;
+}
+
+body.tema-oscuro .detalle-nota {
+  color: #d1d5db;
+}

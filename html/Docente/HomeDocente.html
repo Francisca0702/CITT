@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CITT - Panel Docente</title>
 
-  <!-- Estilos -->
-  <link rel="stylesheet" href="../../css/NavBar.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <!-- Estilos correctos -->
+  <link rel="stylesheet" href="../../css/NavBarDocente.css">
+  <link rel="stylesheet" href="../../css/NavBar.css">
 </head>
 
 <body data-vista="home-docente">
@@ -17,18 +15,33 @@
   <!-- NAVBAR externo -->
   <header id="navbar"></header>
 
-    <script>
+  <script>
     fetch("../Docente/NavBarDocente.html")
-        .then(response => response.text())
-        .then(data => {
-        document.getElementById("navbar").innerHTML = data;
-        });
-    </script>
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar").innerHTML = html;
 
-    
+        // ACTIVAR MODO OSCURO
+        const interruptor = document.getElementById("interruptorTema");
+
+        if (localStorage.getItem("tema") === "oscuro") {
+            document.body.classList.add("tema-oscuro");
+            interruptor.checked = true;
+        }
+
+        interruptor.addEventListener("change", () => {
+            if (interruptor.checked) {
+                document.body.classList.add("tema-oscuro");
+                localStorage.setItem("tema", "oscuro");
+            } else {
+                document.body.classList.remove("tema-oscuro");
+                localStorage.setItem("tema", "claro");
+            }
+        });
+      });
+  </script>
 
   <!-- CONTENIDO PRINCIPAL -->
-
   <main class="dashboard">
     <h1 class="titulo-dashboard">¡Hola, Docente!</h1>
     <p class="subtexto-dashboard">Selecciona una opción</p>
@@ -58,4 +71,3 @@
 
 </body>
 </html>
-

@@ -1,0 +1,233 @@
+/* =========================================================
+   GESTIÓN DE ARTÍCULOS - ESTILO DOCENTE (CIIT)
+   Igual estética que HomeDocente + PerfilDocente
+========================================================= */
+
+/* PALETA INSTITUCIONAL */
+:root {
+    --doc-blue: #307FE2;
+    --doc-blue-light: #8BB8E8;
+    --doc-yellow: #FFB800;
+    --doc-text: #1A1A1A;
+    --doc-white: #ffffff;
+    --doc-shadow: 0 8px 25px rgba(0,0,0,0.10);
+
+    /* Estados */
+    --estado-disponible: #27c281;
+    --estado-ocupado: #ff7b54;
+    --estado-mant: #ffd85e;
+    --estado-danado: #e74c3c;
+}
+
+/* =========================================================
+        FONDO GENERAL
+========================================================= */
+body[data-vista="articulos-docente"] {
+    background: linear-gradient(180deg, #ffffff 0%, #eaf3ff 50%, #d0e5ff 100%);
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding-top: 100px;
+    color: var(--doc-text);
+}
+
+/* =========================================================
+        TÍTULO PRINCIPAL
+========================================================= */
+.doc-titulo {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--doc-blue);
+    margin-bottom: 2.5rem;
+}
+
+/* =========================================================
+        TARJETA GENERAL
+========================================================= */
+.doc-layout {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+.doc-card {
+    background: var(--doc-white);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: var(--doc-shadow);
+    margin-bottom: 2rem;
+}
+
+/* =========================================================
+        TABLA DE ARTÍCULOS
+========================================================= */
+
+.tabla-articulos {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* ENCABEZADO */
+.tabla-articulos thead {
+    background: var(--doc-blue);
+    color: var(--doc-white);
+}
+
+.tabla-articulos th {
+    padding: 14px;
+    text-align: left;
+    font-weight: 600;
+}
+
+/* FILAS */
+.tabla-articulos td {
+    padding: 14px;
+    border-bottom: 1px solid #d9e1ef;
+}
+
+.tabla-articulos tr:hover {
+    background: #f3f7ff;
+}
+
+/* =========================================================
+        BADGES DE ESTADO
+========================================================= */
+
+.badge {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 12px;
+    color: white;
+    width: fit-content;
+}
+
+/* COLORES */
+.badge-disponible {
+    background: var(--estado-disponible);
+}
+
+.badge-ocupado {
+    background: var(--estado-ocupado);
+}
+
+.badge-mantenimiento {
+    background: var(--estado-mant);
+    color: #333;
+}
+
+.badge-danado {
+    background: var(--estado-danado);
+}
+
+/* =========================================================
+        MODALES
+========================================================= */
+
+.doc-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(3px);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.doc-modal-contenido {
+    background: var(--doc-white);
+    width: min(500px, 90vw);
+    padding: 2rem;
+    border-radius: 18px;
+    box-shadow: var(--doc-shadow);
+    animation: modalEntrada .25s ease-out;
+}
+
+@keyframes modalEntrada {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.doc-modal-contenido input,
+.doc-modal-contenido textarea,
+.doc-modal-contenido select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #cfd3da;
+    margin-bottom: 1rem;
+    font-family: "Poppins";
+    font-size: 0.95rem;
+}
+
+.modal-botones {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* BOTONES */
+.doc-btn {
+    background: var(--doc-blue);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s;
+}
+.doc-btn:hover {
+    background: #2368b8;
+}
+
+.doc-btn-cancelar {
+    background: #bbbbbb;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+.doc-btn-cancelar:hover {
+    background: #a1a1a1;
+}
+
+/* =========================================================
+        MODO OSCURO
+========================================================= */
+body.tema-oscuro[data-vista="articulos-docente"] {
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #111827 100%);
+    color: #f1f5f9;
+}
+
+body.tema-oscuro .doc-card {
+    background: #1f2937;
+    color: #f1f5f9;
+}
+
+body.tema-oscuro .tabla-articulos thead {
+    background: #1e3a8a;
+}
+
+body.tema-oscuro .tabla-articulos tr:hover {
+    background: #2b3447;
+}
+
+body.tema-oscuro .doc-modal-contenido {
+    background: #1f2937;
+    color: #f1f5f9;
+}
+
+body.tema-oscuro .doc-modal-contenido input,
+body.tema-oscuro .doc-modal-contenido textarea,
+body.tema-oscuro .doc-modal-contenido select {
+    background: #2b3445;
+    color: #fff;
+    border-color: #3b4455;
+}

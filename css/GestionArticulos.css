@@ -69,6 +69,14 @@ body.tema-oscuro {
     border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
+.tabla-articulos thead th {
+    color: #ffffff !important;
+    background: var(--primario);
+    padding: 1rem;
+    font-size: 1rem;
+    letter-spacing: .3px;
+}
+
 .tabla-articulos tbody tr:hover {
     background: rgba(48,127,226,0.08);
     transition: 0.2s ease;
