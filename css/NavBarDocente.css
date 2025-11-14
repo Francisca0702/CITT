@@ -1,56 +1,50 @@
-/* ========================
-   FUENTE GLOBAL
-======================== */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+/* =========================================================
+   PALETA DE COLORES - DOCENTE (TONOS AZULES PROFESIONALES)
+========================================================= */
 
-/* Fondo general con degradado suave */
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(180deg, #ffffff 0%, #eaf3ff 50%, #d0e5ff 100%);
-    background-size: cover;
-    box-sizing: border-box;
-}
-
-/* ========================
-   PALETA INSTITUCIONAL
-======================== */
 :root {
-    --color-primario: #307FE2;      /* Azul corporativo principal */
-    --color-secundario: #8BB8E8;    /* Azul claro institucional */
-    --color-acento: #FFB800;        /* Amarillo Duoc UC */
-    --color-texto: #1A1A1A;
-    --color-fondo: #FFFFFF;
-    --color-gris: #EEEEEE;
-    --sombra-suave: 0 8px 25px rgba(0, 0, 0, 0.12);
+    --docente-primario: #1E3A8A;       /* Azul profundo */
+    --docente-primario-oscuro: #162B66; /* Azul más oscuro */
+    --docente-secundario: #3B82F6;     /* Azul acento */
+    --docente-claro: #E0ECFF;          /* Fondo azul muy suave */
+    --texto: #1E1E1E;
+    --blanco: #ffffff;
+
+    --sombra: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* ========================
-   NAVBAR SUPERIOR
-======================== */
+/* =======================
+   MODO OSCURO DOCENTE
+======================= */
+body.tema-oscuro {
+    --docente-primario: #0F172A;
+    --docente-primario-oscuro: #0A1120;
+    --docente-secundario: #60A5FA;
+    --docente-claro: #111827;
+    --texto: #F1F5F9;
+    --sombra: 0 4px 18px rgba(0,0,0,0.45);
+}
+
+/* =======================
+        NAVBAR
+======================= */
+
 .barra-superior {
-    position: fixed;             /* Cambiado de sticky a fixed */
-    top: 0;
-    left: 0;
-    width: 100%;                /* Abarca toda la pantalla */
-    height: 68px;               /* Altura estable */
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 40px;            /* Espaciado interno horizontal */
-    background-color: var(--color-primario);
-    color: var(--color-fondo);
-    box-shadow: var(--sombra-suave);
-    box-sizing: border-box;
+    background: var(--docente-primario);
+    padding: 12px 28px;
+    box-shadow: var(--sombra);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    color: var(--blanco);
+    font-family: 'Poppins', sans-serif;
 }
 
-/* Ajuste del contenido general debajo del navbar */
-body > *:not(.barra-superior) {
-    margin-top: 80px;  /* deja espacio para que el contenido no quede oculto */
-}
-
-/* ===== LOGO ===== */
+/* LOGO */
 .logo {
     display: flex;
     flex-direction: column;
@@ -58,135 +52,90 @@ body > *:not(.barra-superior) {
 }
 
 .logo-simbolo {
+    font-size: 22px;
     font-weight: 700;
-    font-size: 26px;
+    color: var(--blanco);
 }
 
 .logo-texto {
+    font-size: 12px;
     font-weight: 300;
-    font-size: 14px;
-    opacity: 0.85;
+    color: var(--docente-secundario);
 }
 
-/* ===== MENU PRINCIPAL ===== */
+/* MENU PRINCIPAL */
 .menu-principal {
     display: flex;
-    align-items: center;
-    gap: 28px;
+    gap: 22px;
 }
 
 .menu-principal a {
-    color: var(--color-fondo);
     text-decoration: none;
+    color: var(--blanco);
     font-weight: 500;
-    padding-bottom: 3px;
-    position: relative;
-    transition: 0.3s;
-    font-size: 15px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: 0.25s;
 }
 
-.menu-principal a:hover,
-.menu-principal a.activo {
-    color: var(--color-acento);
+.menu-principal a:hover {
+    background: var(--docente-secundario);
+    color: var(--blanco);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
 }
 
-.menu-principal a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -3px;
-    width: 0%;
-    height: 2px;
-    background-color: var(--color-acento);
-    transition: width 0.3s;
-}
-
-.menu-principal a:hover::after,
-.menu-principal a.activo::after {
-    width: 100%;
-}
-
-/* ===== ACCIONES HEADER (modo oscuro + usuario) ===== */
+/* ACCIONES (tema + usuario) */
 .acciones-header {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 16px;
 }
 
-/* INTERRUPTOR DE TEMA */
+/* Nombre usuario */
+.usuario-activo {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--blanco);
+}
+
+/* Interruptor modo oscuro */
 .interruptor-tema {
-    width: 52px;
-    height: 28px;
     position: relative;
+    width: 46px;
+    height: 24px;
+    display: inline-block;
 }
 
 .interruptor-tema input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+    display: none;
 }
 
 .slider {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 28px;
     cursor: pointer;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--docente-primario-oscuro);
+    border-radius: 20px;
     transition: 0.3s;
 }
 
-.slider::before {
+.slider:before {
     content: "";
     position: absolute;
-    height: 22px;
-    width: 22px;
+    height: 18px;
+    width: 18px;
     left: 3px;
     bottom: 3px;
-    background-color: #ffffff;
+    background: var(--blanco);
     border-radius: 50%;
     transition: 0.3s;
 }
 
 input:checked + .slider {
-    background-color: var(--color-acento);
+    background: var(--docente-secundario);
 }
 
-input:checked + .slider::before {
-    transform: translateX(24px);
-}
-
-/* USUARIO ACTIVO (opcional) */
-.usuario-activo {
-    font-size: 14px;
-    font-weight: 500;
-    color: #f1f5f9;
-}
-
-/* ========================
-   MODO OSCURO
-======================== */
-body.tema-oscuro {
-    background: #111827;
-    color: #f3f4f6;
-}
-
-body.tema-oscuro .barra-superior {
-    background-color: #1e293b;
-    color: #e2e8f0;
-}
-
-body.tema-oscuro .menu-principal a {
-    color: #e2e8f0;
-}
-
-body.tema-oscuro .menu-principal a:hover,
-body.tema-oscuro .menu-principal a.activo {
-    color: var(--color-acento);
-}
-
-body.tema-oscuro .slider {
-    background-color: #475569;
+input:checked + .slider:before {
+    transform: translateX(22px);
 }

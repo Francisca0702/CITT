@@ -1,75 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CITT - Perfil Docente</title>
 
-    <link rel="stylesheet" href="../../css/NavBar.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/NavBar.css" />
+    <link rel="stylesheet" href="../../css/NavBarDocente.css" />
+   
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
 </head>
 
 <body data-vista="perfil-docente">
 
-    <!-- NAVBAR externo -->
-  <header id="navbar"></header>
+    <!-- NAVBAR -->
+    <header id="navbar"></header>
 
     <script>
-    fetch("../Docente/NavBarDocente.html")
-        .then(response => response.text())
-        .then(data => {
-        document.getElementById("navbar").innerHTML = data;
-        });
+        fetch("../Docente/NavBarDocente.html")
+            .then(r => r.text())
+            .then(html => {
+                document.getElementById("navbar").innerHTML = html;
+
+                const interruptor = document.getElementById("interruptorTema");
+
+                if (localStorage.getItem("tema") === "oscuro") {
+                    document.body.classList.add("tema-oscuro");
+                    interruptor.checked = true;
+                }
+
+                interruptor.addEventListener("change", () => {
+                    if (interruptor.checked) {
+                        document.body.classList.add("tema-oscuro");
+                        localStorage.setItem("tema", "oscuro");
+                    } else {
+                        document.body.classList.remove("tema-oscuro");
+                        localStorage.setItem("tema", "claro");
+                    }
+                });
+            });
     </script>
 
-    <!-- PERFIL DOCENTE -->
-    <main class="perfil-layout">
+    <!-- ============================
+          PERFIL DOCENTE
+    ============================ -->
+    <main class="doc-layout">
 
-        <!-- SECCIÓN FOTO Y NOMBRE -->
-        <div class="perfil-header">
-            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="avatar" class="perfil-foto">
-            <h2 class="perfil-nombre">Rodrigo Pérez</h2>
-            <p class="perfil-subtitulo">Docente - Área de Informática y Telecomunicaciones</p>
+        <div class="doc-foto-area">
+            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="doc-foto" alt="foto docente">
+            <h2 class="doc-nombre">Rodrigo Pérez</h2>
+            <p class="doc-subtitulo">Docente — Área de Informática y Telecomunicaciones</p>
         </div>
 
-        <!-- SECCIÓN TARJETAS INFORMACIÓN -->
-        <div class="perfil-cards">
+        <section class="doc-grid">
 
-            <div class="info-box">
+            <div class="doc-card">
                 <h3>Información Profesional</h3>
                 <p><strong>Correo:</strong> rodrigo.perez@profesorduocuc.cl</p>
                 <p><strong>Asignaturas:</strong> Programación Avanzada, Bases de Datos II</p>
-                <p><strong>Sede:</strong> Valparaiso</p>
+                <p><strong>Sede:</strong> Valparaíso</p>
                 <p><strong>Departamento:</strong> Informática y Telecomunicaciones</p>
             </div>
 
-            <div class="info-box">
+            <div class="doc-card">
                 <h3>Actividad en el CITT</h3>
                 <p><strong>Reservas activas:</strong> 2</p>
                 <p><strong>Materiales prestados:</strong> 3</p>
                 <p><strong>Próximas devoluciones:</strong> 1</p>
             </div>
 
-        </div>
+        </section>
 
-        <!-- BOTÓN EDITAR PERFIL -->
-        <div class="acciones-perfil">
-            <a href="./EditarInformacionDocente.html" class="btn-primario"> Editar información personal</a>
+        <div class="doc-acciones">
+            <a href="./EditarInformacionDocente.html" class="doc-btn">Editar información personal</a>
         </div>
 
     </main>
-
-    <!-- SCRIPT MODO OSCURO -->
-    <script>
-        const interruptorTema = document.getElementById("interruptorTema");
-
-        // Cargar tema guardado
-        if (localStorage.getItem("tema") === "oscuro") {
-            document.body.classList.add("tema-oscuro");
-        }
-    </script>
 
 </body>
 </html>
