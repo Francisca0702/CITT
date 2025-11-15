@@ -1,0 +1,149 @@
+/* ========================
+   FUENTES Y VARIABLES (Como en la foto)
+======================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --color-primario: #307FE2;      /* Azul del botón y títulos */
+    --color-secundario: #8BB8E8;
+    --color-acento: #FFB800;
+    --color-texto: #1A1A1A;         /* Color del texto (Nombre) */
+    --color-texto-gris: #6c757d;    /* Color del subtítulo */
+    --color-fondo: #FFFFFF;         /* Blanco puro de las tarjetas */
+    --color-fondo-pagina: #f7faff;  /* Fondo de página (azul muy suave) */
+    --sombra-suave: 0 8px 25px rgba(0, 0, 0, 0.08); /* Sombra de la tarjeta */
+}
+
+/* ========================
+   ESTILOS DE PÁGINA (Como en la foto)
+======================== */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    /* Este es el "pequeño difuminado" (fondo) de la foto */
+    background-color: var(--color-fondo-pagina);
+    color: var(--color-texto);
+}
+
+/* ========================
+   PERFIL (Layout general)
+======================== */
+.perfil-layout {
+    max-width: 900px; /* Un poco más angosto para centrarlo */
+    margin: auto;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+/* Foto y nombre */
+.perfil-header { 
+    margin-bottom: 2.5rem; 
+}
+
+.perfil-foto {
+    width: 130px; /* Un poco más pequeño */
+    height: 130px;
+    border-radius: 50%;
+    /* La foto NO tiene borde azul */
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sombra suave en el avatar */
+}
+
+.perfil-nombre { 
+    margin-top: 1rem; 
+    font-size: 1.8rem; 
+    font-weight: 700; 
+    color: var(--color-texto);
+}
+.perfil-subtitulo { 
+    margin-top: -0.2rem; 
+    font-size: 0.95rem;
+    color: var(--color-texto-gris); 
+}
+
+/* Tarjetas */
+.perfil-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; /* Menos espacio entre tarjetas */
+    margin-top: 2rem;
+}
+
+.info-box {
+    background: var(--color-fondo); /* Blanco puro */
+    padding: 1.8rem;
+    border-radius: 20px; /* Esquinas más redondeadas */
+    box-shadow: var(--sombra-suave);
+    text-align: left;
+}
+
+/* "Información Personal" / "Actividad en el CIIT" */
+.info-box h3 { 
+    color: var(--color-primario); /* Título en azul */
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 0; 
+    margin-bottom: 1.5rem; /* Más espacio */
+}
+
+/* Estilo de las letras "Correo:", "Reservas:" */
+.info-box p {
+    color: #333;
+    margin: 0.8rem 0; /* Espacio entre líneas */
+    font-size: 0.95rem;
+}
+.info-box p strong {
+    color: var(--color-texto); /* Letra del label más oscura/negra */
+    font-weight: 600;
+}
+
+/* Botones */
+.acciones-perfil {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.btn-primario {
+    background-color: var(--color-primario);
+    color: white; 
+    border: none;
+    padding: 0.8rem 1.5rem; /* Más padding horizontal */
+    border-radius: 12px;
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 0.95rem;
+    /* Sombra del botón (como en la foto) */
+    box-shadow: 0 4px 14px rgba(48, 127, 226, 0.3);
+}
+.btn-primario:hover { 
+    background-color: #2368b8;
+    transform: translateY(-2px); /* Pequeño efecto al pasar el mouse */
+}
+
+
+/* ========================
+   MODO OSCURO (Perfil)
+======================== */
+body.tema-oscuro { 
+    background-color: #111827 !important; 
+    color: #f9fafb; 
+}
+body.tema-oscuro .perfil-nombre {
+    color: #f9fafb;
+}
+body.tema-oscuro .perfil-subtitulo {
+    color: #9ca3af;
+}
+body.tema-oscuro .info-box { 
+    background: #1f2937; 
+}
+body.tema-oscuro .info-box p {
+    color: #d1d5db;
+}
+body.tema-oscuro .info-box p strong {
+    color: #ffffff;
+}

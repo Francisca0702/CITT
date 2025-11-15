@@ -1,0 +1,182 @@
+/* =======================================
+   ESTILOS PARA VISUALIZAR ARTÍCULOS (AYUDANTE)
+   ======================================= */
+
+/* Variables de color */
+:root {
+    --color-primario: #307FE2;
+    --color-fondo: #FFFFFF;
+    --color-gris: #EEEEEE;
+    --color-texto: #1A1A1A;
+    --sombra-suave: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Estilo base */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #f7faff;
+    color: var(--color-texto);
+}
+
+/* Contenedor principal */
+.contenedor-pagina {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+/* Título de la sección */
+.seccion-titulo {
+    color: #0b1f3a; 
+    font-weight: 700; 
+    margin: .5rem 0 1rem;
+}
+
+/* Contenedor de la tabla */
+.tabla-solicitudes-wrap {
+    margin-top: 0.5rem;
+    border-radius: 14px;
+    box-shadow: var(--sombra-suave);
+    background: var(--color-fondo);
+    overflow: hidden; /* Para redondear esquinas */
+}
+
+/* Tabla */
+.tabla-solicitudes {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.tabla-solicitudes thead {
+    background: #f5f7fb;
+}
+
+.tabla-solicitudes th,
+.tabla-solicitudes td {
+    padding: 0.7rem 0.85rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-gris);
+    vertical-align: middle;
+}
+
+.tabla-solicitudes th {
+    font-weight: 600;
+    color: #4b5563;
+    white-space: nowrap;
+}
+
+.tabla-solicitudes tbody tr:hover {
+    background: rgba(48, 127, 226, 0.04);
+}
+
+.tabla-solicitudes tbody tr {
+    cursor: pointer;
+}
+
+/* Chips de estado (Pendiente, Aceptada, etc.) */
+.chip {
+    font-size: .78rem;
+    border-radius: 999px;
+    padding: .25rem .6rem;
+    border: 1px solid var(--color-gris);
+    background: #fff;
+    display: inline-block;
+    font-weight: 600;
+}
+.chip.pendiente { background: #fff9e6; border-color: #ffe08a; color: #916c00; }
+.chip.aceptada { background: #e9f8ed; border-color: #b9e5c4; color: #196c3f; }
+.chip.rechazada { background: #fdeaea; border-color: #f5bcbc; color: #8d2727; }
+
+/* Botones de Acción */
+.acciones-solicitud {
+    display: flex; 
+    gap: .5rem;
+}
+.btn {
+    border: none; 
+    border-radius: 10px; 
+    padding: .55rem .8rem; 
+    cursor: pointer; 
+    font-weight: 600;
+    font-size: 0.8rem;
+    box-shadow: var(--sombra-suave);
+}
+.btn-aceptar { background: var(--color-primario); color: #fff; }
+.btn-aceptar:hover { background: #2368b8; }
+.btn-rechazar {
+    background: #fdeaea; color: #8d2727;
+    border: 1px solid #f5bcbc;
+}
+.btn-rechazar:hover { background: #f8c3c3; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* ===== Modal de detalle de solicitud ===== */
+.overlay-detalle {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+.overlay-detalle.activo { display: flex; }
+.detalle-card {
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+    max-width: 520px;
+    width: 90%;
+    padding: 1.5rem 1.75rem;
+    position: relative;
+}
+.detalle-card h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0b1f3a;
+}
+.detalle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .6rem 1.25rem;
+    font-size: .9rem;
+}
+.detalle-grid strong {
+    display: block;
+    font-weight: 600;
+    color: #4b5563;
+}
+.detalle-nota {
+    margin-top: 1rem;
+    font-size: .9rem;
+    color: #4b5563;
+}
+.detalle-cerrar {
+    position: absolute;
+    top: .6rem;
+    right: .6rem;
+    border: none;
+    background: transparent;
+    font-size: 1.4rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* ===== MODO OSCURO ===== */
+body.tema-oscuro {
+    background-color: #111827 !important;
+    color: #f9fafb;
+}
+body.tema-oscuro .seccion-titulo { color: #e5eefc; }
+body.tema-oscuro .tabla-solicitudes-wrap { background: #1f2937; }
+body.tema-oscuro .tabla-solicitudes thead { background: #111827; }
+body.tema-oscuro .tabla-solicitudes th { color: #e5e7eb; }
+body.tema-oscuro .tabla-solicitudes td { border-bottom-color: rgba(249, 250, 251, 0.06); }
+body.tema-oscuro .detalle-card { background: #1f2937; color: #e5e7eb; }
+body.tema-oscuro .detalle-card h3 { color: #e5eefc; }
+body.tema-oscuro .detalle-grid strong { color: #e5e7eb; }
+body.tema-oscuro .detalle-nota { color: #d1d5db; }

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CITT - Ver Reservas de Artículos</title>
+    
+    <link rel="stylesheet" href="../../../css/ArticulosAyudante.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+
+</head>
+<body data-vista="ayudante-articulos">
+
+    <iframe 
+        src="./NavBarAlumnoAyudante.html"
+        style="width:100%; height:100px; border:none;"
+        title="Navbar Alumno Ayudante">
+    </iframe>
+
+    <main class="contenedor-pagina">
+
+      <section class="solicitudes-wrap">
+        <h2 class="seccion-titulo">Solicitudes de Artículos Pendientes</h2>
+
+        <div class="tabla-solicitudes-wrap">
+            <table class="tabla-solicitudes" aria-label="Solicitudes de artículos pendientes">
+            <thead>
+                <tr>
+                  <th>Artículo Solicitado</th>
+                  <th>Stock</th>
+                  <th>Fecha Préstamo</th>
+                  <th>Solicitante</th>
+                  </tr>
+            </thead>
+            <tbody id="listaSolicitudes">
+                </tbody>
+            </table>
+        </div>
+      </section>
+
+    </main>
+
+    <div id="overlayDetalle" class="overlay-detalle" aria-hidden="true">
+      <div class="detalle-card" role="dialog" aria-modal="true" aria-labelledby="detalleTitulo">
+        <button type="button" class="detalle-cerrar" id="btnCerrarDetalle" aria-label="Cerrar detalle">&times;</button>
+        <h3 id="detalleTitulo">Detalle de la solicitud</h3>
+        <div id="detalleContenido">
+          </div>
+      </div>
+    </div>
+
+
+    <script>
+      
+      // ---------- Datos mock (de ejemplo) de solicitudes de artículos ----------
+      // NOTA: 'estado' se sigue usando para los datos mock, pero ya no es visible
+      const ESTADOS_LS_KEY = "citt_estados_articulos";
+      const estadosPersistidos = JSON.parse(localStorage.getItem(ESTADOS_LS_KEY) || "{}");
+
+      const solicitudesMock = [
+        {
+          id: "a1",
+          articulo: "Notebook Acer Aspire5",
+          cantidad: 2,
+          solicitante: "jperez@duocuc.cl",
+          fecha: "15-11-2025",
+          detalle: "Para taller de programación en Sala B-302.",
+          carrera: "Ingeniería en Informática",
+          jornada: "Diurna",
+          estado: estadosPersistidos["a1"] || "pendiente"
+        },
+        {
+          id: "a2",
+          articulo: "Kit Arduino (5)",
+          cantidad: 5,
+          solicitante: "mrojas@duocuc.cl",
+          fecha: "17-11-2025",
+          detalle: "Pruebas proyecto IoT.",
+          carrera: "Analista Programador",
+          jornada: "Vespertina",
+          estado: estadosPersistidos["a2"] || "pendiente"
+        },
+        {
+          id: "a3",
+          articulo: "Cámara DSLR Canon",
+          cantidad: 1,
+          solicitante: "flores@duocuc.cl",
+          fecha: "10-11-2025",
+          detalle: "Grabación de proyecto final.",
+          carrera: "Diseño Gráfico",
+          jornada: "Diurna",
+          estado: estadosPersistidos["a3"] || "pendiente"
+        }
+      ];
+
+
+      // ---------- Lógica del script ----------
+      document.addEventListener("DOMContentLoaded", function() {
+
+        // ----- Modal detalle (Abrir/Cerrar) -----
+        const overlayDetalle   = document.getElementById("overlayDetalle");
+        const detalleContenido = document.getElementById("detalleContenido");
+        const btnCerrarDetalle = document.getElementById("btnCerrarDetalle");
+
+        const abrirDetalle = (sol) => {
+          detalleContenido.innerHTML = `
+            <div class="detalle-grid">
+              <div>
+                <strong>Artículo</strong>
+                <span>${sol.articulo}</span>
+              </div>
+              <div>
+                <strong>Cantidad</strong>
+                <span>${sol.cantidad}</span>
+              </div>
+              <div>
+                <strong>Fecha Préstamo</strong>
+                <span>${sol.fecha}</span>
+              </div>
+              <div>
+                <strong>Solicitante</strong>
+                <span>${sol.solicitante}</span>
+              </div>
+              <div>
+                <strong>Carrera</strong>
+                <span>${sol.carrera || "No indicada"}</span>
+              </div>
+              <div>
+                <strong>Jornada</strong>
+                <span>${sol.jornada || "No indicada"}</span>
+              </div>
+            </div>
+            <div class="detalle-nota">
+              <strong>Detalle de la solicitud:</strong><br/>
+              <span>${sol.detalle || "Sin detalle adicional"}</span>
+            </div>
+          `;
+
+          overlayDetalle.classList.add("activo");
+          overlayDetalle.setAttribute("aria-hidden", "false");
+        };
+
+        const cerrarDetalle = () => {
+          overlayDetalle.classList.remove("activo");
+          overlayDetalle.setAttribute("aria-hidden", "true");
+        };
+
+        btnCerrarDetalle.addEventListener("click", cerrarDetalle);
+        overlayDetalle.addEventListener("click", (e) => {
+          if (e.target === overlayDetalle) cerrarDetalle();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") cerrarDetalle();
+        });
+
+
+        // ----- Renderizar solicitudes en la tabla -----
+        const cont = document.getElementById("listaSolicitudes"); // <tbody>
+        if (!cont) return;
+
+        // CORRECCIÓN: Se quitaron las funciones 'guardarEstado' y 'manejarAccion'
+
+        // Crear cada fila de la tabla
+        solicitudesMock.forEach(sol => {
+          const tr = document.createElement("tr");
+
+          const tdArticulo = document.createElement("td");
+          tdArticulo.textContent = sol.articulo;
+
+          const tdCantidad = document.createElement("td");
+          tdCantidad.textContent = sol.cantidad;
+
+          const tdFecha = document.createElement("td");
+          tdFecha.textContent = sol.fecha;
+
+          const tdSolicitante = document.createElement("td");
+          tdSolicitante.textContent = sol.solicitante;
+
+          // CORRECCIÓN: Se quitó la celda 'tdAcciones' y los botones
+          
+          // Se mantiene el clic en la fila para abrir el modal
+          tr.addEventListener("click", () => {
+            abrirDetalle(sol);
+          });
+
+          tr.appendChild(tdArticulo);
+          tr.appendChild(tdCantidad);
+          tr.appendChild(tdFecha);
+          tr.appendChild(tdSolicitante);
+          
+          // CORRECCIÓN: Ya no se agrega la celda de acciones
+
+          cont.appendChild(tr);
+        });
+
+      });
+      
+      // --- Script para Sincronizar Modo Oscuro con el Iframe ---
+      function aplicarTema() {
+          if (localStorage.getItem("tema") === "oscuro") {
+              document.body.classList.add("tema-oscuro");
+          } else {
+              document.body.classList.remove("tema-oscuro");
+          }
+      }
+      aplicarTema();
+      window.addEventListener('storage', function(event) {
+          if (event.key === 'tema') {
+              aplicarTema();
+          }
+      });
+    </script>
+</body>
+</html>

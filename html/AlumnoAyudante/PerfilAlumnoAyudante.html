@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CITT - Perfil Ayudante</title>
+    
+        
+        <link rel="stylesheet" href="../../../css/AlumnoAyudante.css">
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    </head>
+<body data-vista="perfil-ayudante">
+
+    <iframe 
+        src="./NavBarAlumnoAyudante.html"
+        style="width:100%; height:100px; border:none;"
+        title="Navbar Alumno Ayudante"> 
+    </iframe>
+
+    <main class="perfil-layout">
+
+    <div class="perfil-header">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="avatar" class="perfil-foto">
+        <h2 class="perfil-nombre">Nicolas Muñoz</h2>
+        <p class="perfil-subtitulo">Alumno Ayudante - Área de Informática y Telecomunicaciones</p>
+    </div>
+
+    <div class="perfil-cards">
+
+        <div class="info-box">
+            <h3>Información Personal</h3>
+            <p><strong>Correo:</strong> Nicolas.muñoz@duocuc.cl</p>
+            <p><strong>Carrera:</strong> Analista Programador</p>
+            <p><strong>Sede:</strong> Valparaíso</p>
+            <p><strong>Rol:</strong> Alumno Ayudante</p>
+        </div>
+
+        <div class="info-box">
+            <h3>Responsabilidades (Ayudante)</h3>
+            <p><strong>Asistencia:</strong> Apoyo Administrativo Sala CIIT.</p>
+            <p><strong>Gestión:</strong> Revisión de préstamos de artículos y espacios </p>
+            <p><strong>Horario Ayudantía:</strong> Lunes y Miércoles (14:00 - 16:00)</p>
+        </div>
+
+    </div>
+    
+
+</main>
+
+
+    <script>
+        function aplicarTema() {
+            if (localStorage.getItem("tema") === "oscuro") {
+                document.body.classList.add("tema-oscuro");
+            } else {
+                document.body.classList.remove("tema-oscuro");
+            }
+        }
+        aplicarTema();
+        window.addEventListener('storage', function(event) {
+            if (event.key === 'tema') {
+                aplicarTema();
+            }
+        });
+    </script>
+
+</body>
+</html>
